@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://chat.whatsapp.com/ICNOZzsDH9E81j3RlqLx4w">
-    <img alt=Support height="250" src="https://telegra.ph/file/d257d118b743b15b83c30.jpg"> 
+    <img alt=Support height="250" src="https://i.imgur.com/XTTRQAc.jpeg"> 
     </p>
 
 ****[FORK THIS REPO](https://github.com/Dady24/Denzel-V2//fork)****

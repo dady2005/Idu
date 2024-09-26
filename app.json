@@ -1,21 +1,21 @@
 {
-  "name": "Lazack Device",
-  "description": " Whatsapp botz made by team lazack.",
+  "name": "ᴅᴇɴᴢᴇʟ-V2",
+  "description": " Whatsapp botz made by team Mickey.",
   "keywords": [
     "whatsapp bot"
   ],
-  "repository": "https://github.com/Lazack28/Lazack-Device",
+  "repository": "https://github.com/Dady24/Denzel-V2",
   "stack": "container",
   "env": {
     "OWNERS": {
       "description": "owner numbers",
       "required": true,
-      "value": "255734980103"
+      "value": "255612130873"
     },
     "BOTNAME": {
       "description": "Give your BOT a name",
       "required": true,
-      "value": "𝐋𝐀𝐙𝐀𝐂𝐊-𝐃𝐄𝐕𝐈𝐂𝐄"
+      "value": "ᴅᴇɴᴢᴇʟ-𝐃𝐄𝐕𝐈𝐂𝐄"
     },
     "DATABASE_URL": {
       "description": "your mongodb database url",
@@ -35,7 +35,7 @@
     "PREFIX": {
       "description": "put any one symbol here except @ and + , leave it Blank if you want to use multiple prefix",
       "required": false,
-      "value": ""
+      "value": "."
     },
      "HKEY": {
       "description": "Put your Heroku api key Here , Get one from here https://dashboard.heroku.com/account",
@@ -50,7 +50,7 @@
     "statusview": {
       "description": "make it true if you want bot to view status",
       "required": false,
-      "value": ""
+      "value": "true"
     },
     "autoRead": {
       "description": "make it true if you want bot to read messages",
@@ -60,7 +60,7 @@
     "antidelete": {
       "description": "bot will forward deleted messages if you make it true",
       "required": false,
-      "value": "false"
+      "value": "true"
     },
      "REMOVEBG_KEY": {
       "description": "your RemoveBg api key",

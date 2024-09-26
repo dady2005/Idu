@@ -62,7 +62,7 @@ let str = `
 ╔═══════════════════════╗
 ║ 🤖 *BOT STATUS:* 🤖                   
 ╠═══════════════════════╣
-║ 🤡  *Bot Name:* ${botname}            
+║ 🤡  *Bot Name:* ᴅᴇɴᴢᴇʟ            
 ║ 💻  *Platform:* Linux                  
 ║ 📣  *Prefix:* ${usedPrefix}            
 ║ 🕓  *Uptime:* ${uptime}               

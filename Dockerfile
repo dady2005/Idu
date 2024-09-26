@@ -1,6 +1,6 @@
 FROM quay.io/gurusensei/gurubhay:latest
 
-RUN git clone https://github.com/Lazack28/Lazack-Device /root/lazack
+RUN git clone https://github.com/Dady24/Denzel-V2 /root/Dady24
 
 WORKDIR /root/lazack/
 

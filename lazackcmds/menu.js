@@ -45,10 +45,10 @@ let greeting = ucapan()
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 
 let str = ` ┏━━━━━━━━━━━━━━┈⊷
-> 🤖 ʙᴏᴛ ɴᴀᴍᴇ: 𝐋𝐚𝐳𝐚𝐜𝐤-𝐌-𝐃𝐞𝐯𝐢𝐜𝐞
-> 📍 ᴠᴇʀꜱɪᴏɴ: 1.0.1
-> 👨‍💻 ᴏᴡɴᴇʀ : 𝐋𝐚𝐳𝐚𝐜𝐤      
-> 👤 ɴᴜᴍʙᴇʀ: 255734980103
+> 🤖 ʙᴏᴛ ɴᴀᴍᴇ: ᴅᴇɴᴢᴇʟ
+> 📍 ᴠᴇʀꜱɪᴏɴ: 2.0.1
+> 👨‍💻 ᴏᴡɴᴇʀ : Mickey      
+> 👤 ɴᴜᴍʙᴇʀ: 255612130873
 > 📡 ᴘʟᴀᴛғᴏʀᴍ: *𝙇𝙄𝙉𝙐𝙓*
 > 🛡 ᴍᴏᴅᴇ: *ℙ𝕌𝔹𝕃𝕀ℂ*
 > 💫 ᴘʀᴇғɪx: [ . ]
@@ -75,7 +75,7 @@ let msg = generateWAMessageFromContent(m.chat, {
           }),
 
           header: proto.Message.InteractiveMessage.Header.create({
-          ...(await prepareWAMessageMedia({ image : { url: 'https://i.imgur.com/WlBJdfh.jpeg'}}, { upload: conn.waUploadToServer})), 
+          ...(await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/d257d118b743b15b83c30.jpg'}}, { upload: conn.waUploadToServer})), 
             title: null,
             subtitle: null,
             hasMediaAttachment: false
@@ -98,7 +98,7 @@ let msg = generateWAMessageFromContent(m.chat, {
                   },
                   {
                   "name": "cta_url",
-                 "buttonParamsJson": "{\"display_text\":\"BOT SC 🎉\",\"url\":\"https://github.com/Lazack28/Lazack-Device\",\"merchant_url\":\"https://github.com/SilvaTechB/Lazack28/Lazack-Device\"}"
+                 "buttonParamsJson": "{\"display_text\":\"BOT SC 🎉\",\"url\":\"https://github.com/Dady24/Denzel-V2\",\"merchant_url\":\"https://github.com/SilvaTechB/Lazack28/Lazack-Device\"}"
               }
            ],
           })

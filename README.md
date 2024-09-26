@@ -1,8 +1,8 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Rockstar-ExtraBold&color=F33A6A&lines=WELCOME+TO+DENZEL+BOT+v1+MADE+BY;MICK🇹🇿;THANKS+FOR+VISITING+MY+REPO)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Rockstar-ExtraBold&color=F33A6A&lines=WELCOME+TO+DENZEL+BOT+V2+MADE+BY;MICK🇹🇿;THANKS+FOR+VISITING+MY+REPO)](https://git.io/typing-svg)
 
 <p align="left">
   <a href="" target="_blank">
-    <img alt="Forks" src="https://img.shields.io/github/forks/Dady24/Denzel/" />
+    <img alt="Forks" src="https://img.shields.io/github/forks/Dady24/Denzel-V2/" />
   </a>
 
 </p>
@@ -14,7 +14,7 @@
     <img alt=Support height="250" src="https://telegra.ph/file/d257d118b743b15b83c30.jpg"> 
     </p>
 
-****[FORK THIS REPO](https://github.com/Dady24/Denzel//fork)****
+****[FORK THIS REPO](https://github.com/Dady24/Denzel-V2//fork)****
 
 ***[GROUP](https://chat.whatsapp.com/CAKGysbedAWCrGmrm5bOiz)***
 

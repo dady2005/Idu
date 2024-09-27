@@ -19,7 +19,7 @@ export async function all(m) {
       { quoted: m }*/
     ) {
     this.sendButton(m.chat, `*ASANTE KWA KUWASILIANA NA MICK*      
-    MORNING OR EVENING @${m.sender.split('@')[0]} 
+    KARIBU SANA@${m.sender.split('@')[0]} 
     KUWA NA SUBRA NITAKUJA HEWANI MDA SIO MREFU  😇
   `.trim(), igfg, null, [['OWNER HELP', '.grp'],['GET TEXT', '.repo']] , m, { mentions: [m.sender] })
     m.react('🤫')

@@ -159,9 +159,9 @@ await m.react('✅')
 } catch {
 await m.react('✖️')
 }}}}}
-handler.help = ['play2'].map(v => v + " *<formato> <búsqueda>*")
+handler.help = ['play'].map(v => v + " *<formato> <búsqueda>*")
 handler.tags = ['downloader']
-handler.command = ['ytplay', 'play2']
+handler.command = ['ytplay', 'play']
 //handler.register = true 
 //handler.limit = 1
 export default handler

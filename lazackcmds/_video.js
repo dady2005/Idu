@@ -1,29 +1,80 @@
-import Starlights from '@StarlightsTeam/Scraper'
-let limit = 300
-let handler = async (m, { conn, text, isPrems, isOwner, usedPrefix, command }) => {
-if (!m.quoted) return conn.reply(m.chat, `🐯 Tag the message containing the YouTube Play result.`, m, rcanal).then(_ => m.react('✖️'))
-if (!m.quoted.text.includes("乂  Y O U T U B E  -  P L A Y")) return conn.reply(m.chat, `🐯 Tag the message containing the YouTube Play result.`, m).then(_ => m.react('✖️'))
-let urls = m.quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
-if (!urls) return conn.reply(m.chat, `Result not found.`, m).then(_ => m.react('✖️'))
-if (urls.length < text) return conn.reply(m.chat, `Result not found.`, m).then(_ => m.react('✖️'))
-let user = global.db.data.users[m.sender]
+const {eypz , commands} = require('../command')
+const fg = require('api-dylux')
+const yts = require('yt-search')
+const config = require('../config')
 
-await m.react('🕓')
-try {
-let v = urls[0]
-let { title, size, quality, thumbnail, dl_url } = await Starlights.ytmp4(v)
 
-if (size.split('MB')[0] >= limit) return m.reply(`The file weighs more than ${limit} MB, Download was canceled.`).then(_ => m.react('✖️'))
+eypz({
+    pattern: "song",
+    desc: "download songs",
+    category: "download",
+    filename: __filename
+},
+async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
+try{
+if(!q) return reply("Please give me url or title")
+const search = await yts(q)
+const data = search.videos[0];
+const url = data.url
 
-await conn.sendFile(m.chat, dl_url, title + '.mp4', `*» Title* : ${title}\n*» Quality* : ${quality}`, m, false, { asDocument: user.useDocument })
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}
-handler.help = ['Video']
-handler.tags = ['downloader']
-handler.customPrefix = /^(Video|video|vídeo|Vídeo)/
-handler.command = new RegExp
-//handler.limit = 1
+let desc = `
+_*ᴅᴇɴᴢᴇʟ>🪻*_
+`
+await conn.sendMessage(from,{image:{url: data.thumbnail},caption:desc},{quoted:mek});
 
-export default handler
+//download audio
+
+let down = await fg.yta(url)
+let downloadUrl = down.dl_url
+
+//send audio + document message
+await conn.sendMessage(from,{audio: {url:downloadUrl},mimetype:"audio/mpeg"},{quoted:mek})
+await conn.sendMessage(from,{document: {url:downloadUrl},mimetype:"audio/mpeg",fileName:data.title + ".mp3",caption: config.BOT_NAME},{quoted:mek})
+
+
+
+
+
+}catch(e){
+console.log(e)
+reply(`${e}`)
+}
+})
+//=============video-dl==============
+eypz({
+    pattern: "video",
+    desc: "download videos",
+    category: "download",
+    filename: __filename
+},
+async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
+try{
+if(!q) return reply("Please give me url or title")
+const search = await yts(q)
+const data = search.videos[0];
+const url = data.url
+
+let desc = `
+_*Mickey is best>🪻*_
+`
+await conn.sendMessage(from,{image:{url: data.thumbnail},caption:desc},{quoted:mek});
+
+//download video
+
+let down = await fg.ytv(url)
+let downloadUrl = down.dl_url
+
+//send video+ document message
+await conn.sendMessage(from,{video: {url:downloadUrl},mimetype:"video/mp4"},{quoted:mek})
+await conn.sendMessage(from,{document: {url:downloadUrl},mimetype:"video/mp4",fileName: data.title + ".mp4",caption:config.BOT_NAME},{quoted:mek})
+
+
+
+
+
+
+}catch(e){
+console.log(e)
+reply(`${e}`)
+}
+})

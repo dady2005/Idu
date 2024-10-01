@@ -73,27 +73,44 @@ let str = `
 乂───『 *INFO*』───乂 
 │ *Simple menu*
 │ *_TRY NOT TO LAUGH_*
-╰───────⳹
+╰───────⳹ 
 ╭───────⳹
-│ *1.* Bot Menu
-│ *2.* Owner Menu
-│ *3.* Group Menu
-│ *4.* Fun Menu
-│ *5.* Reaction Menu
-│ *6.* Downloader Menu
-│ *7.* Game Menu
-│ *8.* Logo Menu
-│ *9.* Sticker Menu
-│ *10.* Audio Menu
-│ *11.* News Menu
-│ *12.* Economy Menu
-│ *13.* Anime Menu
-│ *14.* NSFW Menu
-│ *15.* Tools Menu
-│ *16.* AI Menu
-│ *17.* Religion Menu
-│ *18.* Plugin Menu
-╰───────⳹
+Name: Mickey
+
+Address: Dar es Salaam, Tanzania
+
+Occupation: IT
+
+Experience:
+
+• IT Assistant at XYZ Company, 2023: Successfully resolved 90% of employee computer issues.
+• Independent IT Service Provider, 2023: Provided computer repair and software installation services to individual clients and small businesses.
+
+Skills:
+
+• Beginner: Python, JavaScript, HTML, CSS.
+• Experienced: Using Windows and Linux operating systems.
+• Fundamentals: Networking and server operations.
+
+Education:
+
+• University of Dar es Salaam (UDSM), Information Technology Center: Diploma in Information Technology, 2020-2023.
+
+Languages:
+
+• Swahili (Native Language)
+• English (Fluent)
+
+Certifications:
+
+• Microsoft Office Specialist.
+
+Career Objective:
+
+• Seeking a role as an IT Assistant that requires programming and networking skills.
+
+
+
 
 > 💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
 `

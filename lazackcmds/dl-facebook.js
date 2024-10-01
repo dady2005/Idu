@@ -18,7 +18,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
     const tex = `
 ⊱ HERE IS YOUR VIDEO ⊰\n\n
 ↳ *VIDEO TITLE:* ${result.title}\n\n
-⊱ THANKS FOR CHOOSING ᴅᴇɴᴢᴇʟ`
+⊱ THANKS FOR CHOOSING DENZEL`
 
     const response = await fetch(result.videoUrl)
     const arrayBuffer = await response.arrayBuffer()

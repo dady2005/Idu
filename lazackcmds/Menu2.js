@@ -67,14 +67,16 @@ let str = `
 ║ 📣  *Prefix:* ${usedPrefix}            
 ║ 🕓  *Uptime:* ${uptime}               
 ║ 💌  *Database:* ${rtotalreg} of ${totaluser} 
-║ 📚  *Total Users:* ${totaluser}       
+     
 ╚═══════════════════════╝
 
 乂───『 *INFO*』───乂 
-│ *Simple menu*
-│ *_TRY NOT TO LAUGH_*
-╰───────⳹ 
-╭───────⳹
+│ *Mickey bots*
+ ⎆Denzel v1
+ ⎆Denzel v2
+
+
+╔═══════════════════════════╗
 Name: Mickey
 
 Address: Dar es Salaam, Tanzania
@@ -83,7 +85,7 @@ Occupation: IT
 
 Experience:
 
-• IT Assistant at XYZ Company, 2023: Successfully resolved 90% of employee computer issues.
+• IT Assistant at Mickey information technology Company, 2023: Successfully resolved 90% of employee computer issues.
 • Independent IT Service Provider, 2023: Provided computer repair and software installation services to individual clients and small businesses.
 
 Skills:
@@ -108,11 +110,11 @@ Certifications:
 Career Objective:
 
 • Seeking a role as an IT Assistant that requires programming and networking skills.
+╚══════════════════════════════════════════════════════════════════════╝
 
 
 
-
-> 💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
+> 💡 *_Remember, ᴅᴇɴᴢᴇʟ is the best, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
 `
 
     

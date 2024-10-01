@@ -1,84 +1,113 @@
-import ytdl from 'youtubedl-core';
-import axios from 'axios';
-import fs from 'fs';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
-import os from 'os';
+import fetch from 'node-fetch'
+import yts from 'yt-search'
 
-const streamPipeline = promisify(pipeline);
+let handler = async (m, { conn: conn, command, args, text, usedPrefix }) => {
+  if (!text) return conn.reply(m.chat, '🐯 Enter the title of a YouTube video or song.\n\n`Example:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m)
+await m.react('🕓')
+    try {
+    let res = await search(args.join(" "))
+    let img = await (await fetch(`${res[0].image}`)).buffer()
+    let txt = '`乂  Y O U T U B E  -  P L A Y`\n\n'
+       txt += `	✩   *Title* : ${res[0].title}\n`
+       txt += `	✩   *Duration* : ${secondString(res[0].duration.seconds)}\n`
+       txt += `	✩   *Published* : ${eYear(res[0].ago)}\n`
+       txt += `	✩   *Canal* : ${res[0].author.name || 'Desconocido'}\n`
+       txt += `	✩   *Url* : ${'https://youtu.be/' + res[0].videoId}\n\n`
+       txt += `> *-*To download reply to this message with *Video* or *Audio*.`
+await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+await m.react('✅')
+} catch {
+await m.react('✖️')
+}}
+handler.help = ['play *<search>*']
+handler.tags = ['downloader']
+handler.command = ['play']
+//handler.register = true 
+export default handler
 
-let handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw `Use example: ${usedPrefix}${command} naruto blue bird`;
-  await m.react('⏳'); // Assuming rwait is an emoji
+async function search(query, options = {}) {
+  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
+  return search.videos
+}
 
-  try {
-    const query = encodeURIComponent(text);
-    const response = await axios.get(`https://apisku-furina.vercel.app/api/downloader/play?q=${query}&apikey=indradev`);
-    const result = response.data.results[0];
+function MilesNumber(number) {
+  let exp = /(\d)(?=(\d{3})+(?!\d))/g
+  let rep = "$1."
+  let arr = number.toString().split(".")
+  arr[0] = arr[0].replace(exp, rep)
+  return arr[1] ? arr.join(".") : arr[0]
+}
 
-    if (!result) throw 'Video Not Found, Try Another Title';
+function secondString(seconds) {
+  seconds = Number(seconds);
+  const d = Math.floor(seconds / (3600 * 24));
+  const h = Math.floor((seconds % (3600 * 24)) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  const dDisplay = d > 0 ? d + (d == 1 ? ' Día, ' : ' Días, ') : '';
+  const hDisplay = h > 0 ? h + (h == 1 ? ' Hora, ' : ' Horas, ') : '';
+  const mDisplay = m > 0 ? m + (m == 1 ? ' Minuto, ' : ' Minutos, ') : '';
+  const sDisplay = s > 0 ? s + (s == 1 ? ' Segundo' : ' Segundos') : '';
+  return dDisplay + hDisplay + mDisplay + sDisplay;
+}
 
-    const { title, thumbnail, duration, views, uploaded, url } = result;
+function sNum(num) {
+    return new Intl.NumberFormat('en-GB', { notation: "compact", compactDisplay: "short" }).format(num)
+}
 
-    const captvid = `✼ ••๑⋯ ❀ Y O U T U B E ❀ ⋯⋅๑•• ✼
-❏ Title: ${title}
-❐ Duration: ${duration}
-❑ Views: ${views}
-❒ Upload: ${uploaded}
-❒ Link: ${url}
-
-> I CAN'T DOWNLOAD FOR YOU NOW WE ARE FIXING THE PROBLEM.
-> ©Mickey
-⊱─━━━━⊱༻●༺⊰━━━━─⊰`;
-
-    await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: captvid }, { quoted: m });
-
-    const audioStream = ytdl(url, {
-      filter: 'audioonly',
-      quality: 'highestaudio',
-    });
-
-    const tmpDir = os.tmpdir();
-    const audioPath = `${tmpDir}/${title}.mp3`;
-    const writableStream = fs.createWriteStream(audioPath);
-
-    await streamPipeline(audioStream, writableStream);
-
-    const doc = {
-      audio: {
-        url: audioPath,
-      },
-      mimetype: 'audio/mpeg',
-      ptt: false,
-      waveform: [100, 0, 0, 0, 0, 0, 100],
-      fileName: title,
-      contextInfo: {
-        externalAdReply: {
-          showAdAttribution: true,
-          mediaType: 2,
-          mediaUrl: url,
-          title: title,
-          body: 'HERE IS YOUR SONG',
-          sourceUrl: url,
-          thumbnail: await (await conn.getFile(thumbnail)).data,
-        },
-      },
-    };
-
-    await conn.sendMessage(m.chat, doc, { quoted: m });
-
-    // Cleanup
-    await fs.promises.unlink(audioPath);
-    console.log(`Deleted audio file: ${audioPath}`);
-  } catch (error) {
-    console.error(error);
-    throw 'An error occurred while searching for YouTube videos.';
-  }
-};
-
-handler.help = ['play'].map((v) => v + ' <query>');
-handler.tags = ['downloader'];
-handler.command = /^play$/i;
-handler.exp = 0;
-
-export default handler;
+function eYear(txt) {
+    if (!txt) {
+        return '×'
+    }
+    if (txt.includes('month ago')) {
+        var T = txt.replace("month ago", "").trim()
+        var L = 'does '  + T + ' month'
+        return L
+    }
+    if (txt.includes('months ago')) {
+        var T = txt.replace("months ago", "").trim()
+        var L = 'does ' + T + ' months'
+        return L
+    }
+    if (txt.includes('year ago')) {
+        var T = txt.replace("year ago", "").trim()
+        var L = 'does ' + T + ' year'
+        return L
+    }
+    if (txt.includes('years ago')) {
+        var T = txt.replace("years ago", "").trim()
+        var L = 'does ' + T + ' years'
+        return L
+    }
+    if (txt.includes('hour ago')) {
+        var T = txt.replace("hour ago", "").trim()
+        var L = 'does ' + T + ' hour'
+        return L
+    }
+    if (txt.includes('hours ago')) {
+        var T = txt.replace("hours ago", "").trim()
+        var L = 'does ' + T + ' hours'
+        return L
+    }
+    if (txt.includes('minute ago')) {
+        var T = txt.replace("minute ago", "").trim()
+        var L = 'does ' + T + ' minute'
+        return L
+    }
+    if (txt.includes('minutes ago')) {
+        var T = txt.replace("minutes ago", "").trim()
+        var L = 'does ' + T + ' minutes'
+        return L
+    }
+    if (txt.includes('day ago')) {
+        var T = txt.replace("day ago", "").trim()
+        var L = 'does ' + T + ' day'
+        return L
+    }
+    if (txt.includes('days ago')) {
+        var T = txt.replace("days ago", "").trim()
+        var L = 'does ' + T + ' day'
+        return L
+    }
+    return txt
+                    }

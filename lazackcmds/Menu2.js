@@ -7,8 +7,8 @@ const { levelling } = '../lib/levelling.js'
 import moment from 'moment-timezone'
 import { promises } from 'fs'
 import { join } from 'path'
-const time = moment.tz('Asia/Kolkata').format('HH')
-let wib = moment.tz('Asia/Kolkata').format('HH:mm:ss')
+const time = moment.tz('Africa/Dodoma').format('HH')
+let wib = moment.tz('Africa/Dodoma').format('HH:mm:ss')
 //import db from '../lib/database.js'
 
 let handler = async (m, { conn, usedPrefix, command}) => {
@@ -42,12 +42,12 @@ let str = `
 📜 *_Quote of the day: ${quote}_* 📜
 
 ╔═══════════════════════╗
-║ 🌟 *User Info:* 🌟                    
+║ ⎆ *User Info:* ⎆                 
 ║═══════════════════════╣
 ║ 👾  *User Tag:* ${taguser}            
 ║ 🎩  *Name:* ${name}                   
 ║ 🦸  *Master Mind:* Dady24           
-║ 💎  *Diamonds:* ${diamond}             
+║ 💎  *Money:* Tsh90,000             
 ║ 🏆  *Rank:* ${role}                   
 ║ 🎮  *XP:* ${exp}                      
 ╚═══════════════════════╝
@@ -60,9 +60,9 @@ let str = `
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
-║ 🤖 *BOT STATUS:* 🤖                   
+║  *BOT STATUS:*                    
 ╠═══════════════════════╣
-║ 🤡  *Bot Name:* ${botname}            
+║ 🤡  *Bot Name:* ᴅᴇɴᴢᴇʟ            
 ║ 💻  *Platform:* Linux                  
 ║ 📣  *Prefix:* ${usedPrefix}            
 ║ 🕓  *Uptime:* ${uptime}               

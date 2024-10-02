@@ -37,19 +37,19 @@ let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
- *_Karibu ${name}, ${greeting}!sisi ni Mickey™ !_* 🇹🇿
+🚀 *_Buckle up ${name}, ${greeting}! We're going on an adventure!_* 🚀
 
 📜 *_Quote of the day: ${quote}_* 📜
 
 ╔═══════════════════════╗
-║  *User Info:*                    
+║ 🌟 *User Info:* 🌟                    
 ║═══════════════════════╣
-║   *User Tag:* ${taguser}            
-║   *Name:* ${name}                   
-║   *Master Mind:* Dady24           
-║   *Money:* Tsh 90,000             
-║   *Rank:* ${role}                   
-║   *XP:* ${exp}                      
+║ 👾  *User Tag:* ${taguser}            
+║ 🎩  *Name:* ${name}                   
+║ 🦸  *Master Mind:* Dady24           
+║ 💎  *Diamonds:* ${diamond}             
+║ 🏆  *Rank:* ${role}                   
+║ 🎮  *XP:* ${exp}                      
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
@@ -60,26 +60,42 @@ let str = `
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
-║  *BOT STATUS:*                   
+║ 🤖 *BOT STATUS:* 🤖                   
 ╠═══════════════════════╣
-║   *Bot Name:*⎆Denzel V2            
-║   *Platform:* Linux                  
-║   *Prefix:* ${usedPrefix}            
-║   *Uptime:* ${uptime}               
-║   *Database:* ${rtotalreg} of ${totaluser} 
-║   *Total Users:* ${totaluser}       
+║ 🤡  *Bot Name:* ${botname}            
+║ 💻  *Platform:* Linux                  
+║ 📣  *Prefix:* ${usedPrefix}            
+║ 🕓  *Uptime:* ${uptime}               
+║ 💌  *Database:* ${rtotalreg} of ${totaluser} 
+║ 📚  *Total Users:* ${totaluser}       
 ╚═══════════════════════╝
 
 乂───『 *INFO*』───乂 
-│ *Mickey info tech™*
-│ *_SUPPORT MICKEY TEAM_*
+│ *Simple menu*
+│ *_TRY NOT TO LAUGH_*
 ╰───────⳹
-│ *Mickey bots*
- ⎆Denzel v1  
- ⎆Denzel v2  
+╭───────⳹
+│ *1.* Bot Menu
+│ *2.* Owner Menu
+│ *3.* Group Menu
+│ *4.* Fun Menu
+│ *5.* Reaction Menu
+│ *6.* Downloader Menu
+│ *7.* Game Menu
+│ *8.* Logo Menu
+│ *9.* Sticker Menu
+│ *10.* Audio Menu
+│ *11.* News Menu
+│ *12.* Economy Menu
+│ *13.* Anime Menu
+│ *14.* NSFW Menu
+│ *15.* Tools Menu
+│ *16.* AI Menu
+│ *17.* Religion Menu
+│ *18.* Plugin Menu
 ╰───────⳹
 
-> 💡 *_Remember,to start prefix before command use ${usedPrefix}list or ${usedPrefix}help2. It's Good bot!_* 💡
+> 💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
 `
 
     
@@ -162,4 +178,18 @@ function clockString(ms) {
       "I don't know why I keep hitting the escape button. I'm just trying to get out of here.",
       "I'm not lazy. I'm on energy-saving mode.",
       "I don't need a hairstylist, my pillow gives me a new hairstyle every morning.",
-      
+      "I don't have a bad handwriting, I have my own font.",
+      "I'm not clumsy. It's just the floor hates me, the table and chairs are bullies, and the walls get in my way.",
+      "I'm not saying I'm Batman. I'm just saying no one has ever seen me and Batman in the same room together.",
+      "I'm not saying I'm Wonder Woman. I'm just saying no one has ever seen me and Wonder Woman in the same room together.",
+      "I'm not saying I'm Superman. I'm just saying no one has ever seen me and Superman in the same room together.",
+      "I'm not saying I'm Spider-Man. I'm just saying no one has ever seen me and Spider-Man in the same room together.",
+      "I'm not saying I'm a superhero. I'm just saying no one has ever seen me and a superhero in the same room together.",
+      "वक्त हमे बहुत कुछ सिखा देता है, खासकर तब जब हमारे पास वक्त नहीं होता।",
+      "जिंदगी एक किताब की तरह होती है, हर दिन नया पन्ना बदलता है। कभी हंसते हैं, कभी रोते हैं, पर हर किसी की कहानी अधूरी होती है!",
+      "पढ़ाई करो तो दिल लगता नही, दिल लगाओ तो दिमाग़ लगता नहीं।",
+      "दोस्ती इतनी गहरी करो की दिल में बस जाओ, ऐसे दोस्ती निभाओ की हमे भी तुम्हारे दोस्त होने पर नाज हो।",
+      "मेरे दोस्त तुम बहुत याद आते हो, जब भी भूख लगती है वो समोसे बहुत याद आते है।",
+      "जीवन का असली मज़ा तो तब आता है, जब दूसरे आपकी ज़िंदगी जीने की कोशिश करते हैं।",
+      "कुछ लोग तो इतने फालतू होते हैं, खुद की ज़िंदगी खुद ही नहीं जी पाते और दूसरों की ज़िंदगी में टांग अड़ा देते हैं।"
+];

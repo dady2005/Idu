@@ -8,7 +8,7 @@ let handler = async (m, { command, conn, text }) => {
     throw "No text to search, please enter the name of the song you want to play.\n\n*EXAMPLE:\n#play2  - Hope xxxtentacion*";
   }
   try {
-    if (command === "play2") {
+    if (command === "play") {
       conn.reply(m.chat, "*_sending your audio..._*", m);
       try {
         let response = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`);
@@ -39,7 +39,7 @@ let handler = async (m, { command, conn, text }) => {
         await conn.sendMessage(m.chat, {
           'video': { 'url': ytVideoResult.result },
           'fileName': 'error.mp4',
-          'caption': "_XLICON V2 MD_",
+          'caption': "_DEMZEL BOT_",
           'thumbnail': ytVideoResult.thumb,
           'mimetype': "video/mp4"
         }, { 'quoted': m });
@@ -54,9 +54,9 @@ let handler = async (m, { command, conn, text }) => {
   }
 };
 
-handler.help = ["play2", "playvid"].map(cmd => cmd + " <text>");
+handler.help = ["play", "playvid"].map(cmd => cmd + " <text>");
 handler.tags = ["downloader"];
-handler.command = ["play2", 'playvid'];
+handler.command = ["play", 'playvid'];
 export default handler;
 
 function bytesToSize(bytes) {

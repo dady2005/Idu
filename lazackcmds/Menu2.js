@@ -7,8 +7,8 @@ const { levelling } = '../lib/levelling.js'
 import moment from 'moment-timezone'
 import { promises } from 'fs'
 import { join } from 'path'
-const time = moment.tz('Africa/Dodoma').format('HH')
-let wib = moment.tz('Africa/Dodoma').format('HH:mm:ss')
+const time = moment.tz('Asia/Kolkata').format('HH')
+let wib = moment.tz('Asia/Kolkata').format('HH:mm:ss')
 //import db from '../lib/database.js'
 
 let handler = async (m, { conn, usedPrefix, command}) => {
@@ -37,84 +37,65 @@ let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-🚀 *_Hellow ${name}, ${greeting}! We're going on to make big deal!_* 🚀
+🚀 *_Buckle up ${name}, ${greeting}! We're going on an adventure!_* 🚀
 
 📜 *_Quote of the day: ${quote}_* 📜
 
 ╔═══════════════════════╗
-║ ⎆ *User Info:* ⎆                 
+║ 🌟 *User Info:* 🌟                    
 ║═══════════════════════╣
 ║ 👾  *User Tag:* ${taguser}            
 ║ 🎩  *Name:* ${name}                   
 ║ 🦸  *Master Mind:* Dady24           
-║ 💎  *Money:* Tsh90,000             
+║ 💎  *Diamonds:* ${diamond}             
 ║ 🏆  *Rank:* ${role}                   
 ║ 🎮  *XP:* ${exp}                      
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
-║ 📅 *Today's Date!* 📅                
+║ 📅 *Today's Sauce!* 📅                
 ╠═══════════════════════╣
 ║ 📆  *Today's Date:* ${date}           
 ║ ⏲️  *Current Time:* ${wib}            
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
-║  *BOT STATUS:*                    
+║ 🤖 *BOT STATUS:* 🤖                   
 ╠═══════════════════════╣
-║ 🤡  *Bot Name:* ᴅᴇɴᴢᴇʟ            
+║ 🤡  *Bot Name:* ${botname}            
 ║ 💻  *Platform:* Linux                  
 ║ 📣  *Prefix:* ${usedPrefix}            
 ║ 🕓  *Uptime:* ${uptime}               
 ║ 💌  *Database:* ${rtotalreg} of ${totaluser} 
-     
+║ 📚  *Total Users:* ${totaluser}       
 ╚═══════════════════════╝
 
 乂───『 *INFO*』───乂 
-│ *Mickey bots*
- ⎆Denzel v1
- ⎆Denzel v2
+│ *Simple menu*
+│ *_TRY NOT TO LAUGH_*
+╰───────⳹
+╭───────⳹
+│ *1.* Bot Menu
+│ *2.* Owner Menu
+│ *3.* Group Menu
+│ *4.* Fun Menu
+│ *5.* Reaction Menu
+│ *6.* Downloader Menu
+│ *7.* Game Menu
+│ *8.* Logo Menu
+│ *9.* Sticker Menu
+│ *10.* Audio Menu
+│ *11.* News Menu
+│ *12.* Economy Menu
+│ *13.* Anime Menu
+│ *14.* NSFW Menu
+│ *15.* Tools Menu
+│ *16.* AI Menu
+│ *17.* Religion Menu
+│ *18.* Plugin Menu
+╰───────⳹
 
-
-╔═══════════════════════════╗
-Name: Mickey
-
-Address: Dar es Salaam, Tanzania
-
-Occupation: IT
-
-Experience:
-
-• IT Assistant at Mickey information technology Company, 2023: Successfully resolved 90% of employee computer issues.
-• Independent IT Service Provider, 2023: Provided computer repair and software installation services to individual clients and small businesses.
-
-Skills:
-
-• Beginner: Python, JavaScript, HTML, CSS.
-• Experienced: Using Windows and Linux operating systems.
-• Fundamentals: Networking and server operations.
-
-Education:
-
-• University of Dar es Salaam (UDSM), Information Technology Center: Diploma in Information Technology, 2020-2023.
-
-Languages:
-
-• Swahili (Native Language)
-• English (Fluent)
-
-Certifications:
-
-• Microsoft Office Specialist.
-
-Career Objective:
-
-• Seeking a role as an IT Assistant that requires programming and networking skills.
-╚══════════════════════════════════════════════════════════════════════╝
-
-
-
-> 💡 *_Remember, ᴅᴇɴᴢᴇʟ is the best, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
+> 💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
 `
 
     
@@ -203,4 +184,12 @@ function clockString(ms) {
       "I'm not saying I'm Wonder Woman. I'm just saying no one has ever seen me and Wonder Woman in the same room together.",
       "I'm not saying I'm Superman. I'm just saying no one has ever seen me and Superman in the same room together.",
       "I'm not saying I'm Spider-Man. I'm just saying no one has ever seen me and Spider-Man in the same room together.",
-      
+      "I'm not saying I'm a superhero. I'm just saying no one has ever seen me and a superhero in the same room together.",
+      "वक्त हमे बहुत कुछ सिखा देता है, खासकर तब जब हमारे पास वक्त नहीं होता।",
+      "जिंदगी एक किताब की तरह होती है, हर दिन नया पन्ना बदलता है। कभी हंसते हैं, कभी रोते हैं, पर हर किसी की कहानी अधूरी होती है!",
+      "पढ़ाई करो तो दिल लगता नही, दिल लगाओ तो दिमाग़ लगता नहीं।",
+      "दोस्ती इतनी गहरी करो की दिल में बस जाओ, ऐसे दोस्ती निभाओ की हमे भी तुम्हारे दोस्त होने पर नाज हो।",
+      "मेरे दोस्त तुम बहुत याद आते हो, जब भी भूख लगती है वो समोसे बहुत याद आते है।",
+      "जीवन का असली मज़ा तो तब आता है, जब दूसरे आपकी ज़िंदगी जीने की कोशिश करते हैं।",
+      "कुछ लोग तो इतने फालतू होते हैं, खुद की ज़िंदगी खुद ही नहीं जी पाते और दूसरों की ज़िंदगी में टांग अड़ा देते हैं।"
+];

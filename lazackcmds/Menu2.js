@@ -37,19 +37,19 @@ let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-🚀 *_Buckle up ${name}, ${greeting}! We're going on an adventure!_* 🚀
+🚀 *_welcome ${name}, ${greeting}! We're going on an adventure!_* 🚀
 
 📜 *_Quote of the day: ${quote}_* 📜
 
 ╔═══════════════════════╗
-║ 🌟 *User Info:* 🌟                    
+║  *User Info:*                     
 ║═══════════════════════╣
-║ 👾  *User Tag:* ${taguser}            
-║ 🎩  *Name:* ${name}                   
-║ 🦸  *Master Mind:* Dady24           
-║ 💎  *Diamonds:* ${diamond}             
-║ 🏆  *Rank:* ${role}                   
-║ 🎮  *XP:* ${exp}                      
+║   *User Tag:* ${taguser}            
+║   *Name:* ${name}                   
+║   *Master Mind:* Dady24           
+║   *Balance* Tsh 90,000             
+║   *Rank:* ${role}                   
+║   *XP:* ${exp}                      
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
@@ -60,14 +60,14 @@ let str = `
 ╚═══════════════════════╝
 
 ╔═══════════════════════╗
-║ 🤖 *BOT STATUS:* 🤖                   
+║  *BOT STATUS:*                    
 ╠═══════════════════════╣
-║ 🤡  *Bot Name:* ${botname}            
-║ 💻  *Platform:* Linux                  
-║ 📣  *Prefix:* ${usedPrefix}            
-║ 🕓  *Uptime:* ${uptime}               
-║ 💌  *Database:* ${rtotalreg} of ${totaluser} 
-║ 📚  *Total Users:* ${totaluser}       
+║   *Bot Name:* ᴅᴇɴᴢᴇʟ V2            
+║   *Platform:* Linux                  
+║   *Prefix:* ${usedPrefix}            
+║   *Uptime:* ${uptime}               
+║   *Database:* ${rtotalreg} of ${totaluser} 
+║   *Total Users:* ${totaluser}       
 ╚═══════════════════════╝
 
 乂───『 *INFO*』───乂 

@@ -24,7 +24,7 @@ await m.react('✖️')
 handler.help = ['Audio']
 handler.tags = ['downloader']
 handler.customPrefix = /^(Audio|audio)/
-handler.command = new RegExp
+handler.command = ['Audio']
 //handler.limit = 1
 
 export default handler

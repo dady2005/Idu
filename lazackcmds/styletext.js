@@ -1,47 +1,24 @@
-import fetch from 'node-fetch'
+const { Hamza } = require("../lazackcmds");
+const fancy = require("../commandes/style");
 
-let handler = async (m, { conn, text }) => {
-  // Split the text into words
-  let words = text.split(' ')
+Hamza({ commandName: "fancy", category: "Fun", reaction: "☑️" }, async (dest, zk, commandOptions) => {
+    const { arg, reply, prefix } = commandOptions;
+    const id = arg[0]?.match(/\d+/)?.join('');
+    const text = arg.slice(1).join(" ");
 
-  // The first word should be the key, the rest is the text to stylize
-  let key = words[0]
-  let textToStyle = words.slice(1).join(' ')
+    try {
+        if (id === undefined || text === undefined) {
+            return await reply(`\nExample: ${prefix}fancy 10 Mick\n` + String.fromCharCode(8206).repeat(4001) + fancy.list('DEXTER-MD', fancy));
+        }
 
-  // If no key and text provided, show all styles of a default text
-  if (words.length === 0 || !key || !textToStyle) {
-    let defaultText = 'DEVICE BOT'
-    let styledTexts = await Promise.all(
-      [...Array(34).keys()].map(i => stylizeText(defaultText, i + 1))
-    )
-    conn.reply(m.chat, styledTexts.join`\n\n`, m)
-    return
-  }
-
-  // Check if the key is a number between 1 and 34
-  if (!Number.isInteger(+key) || +key < 1 || +key > 34) {
-    throw 'Invalid key. Please provide a number between 1 and 34.'
-  }
-
-  // Get the styled text
-  let styledText = await stylizeText(textToStyle, key)
-
-  conn.reply(m.chat, styledText, m)
-}
-
-handler.help = ['style'].map(v => v + ' <key> <text>')
-handler.tags = ['tools']
-handler.command = /^(fancy)$/i
-handler.exp = 0
-
-export default handler
-
-async function stylizeText(text, key) {
-  let res = await fetch(
-    `https://inrl-web-fkns.onrender.com/api/fancy?text=${encodeURIComponent(text)}&key=${key}`
-  )
-  let data = await res.json()
-
-  // Use 'result' field for the styled text.
-  return `*Key ${key}*\n${data.result}`
-}
+        const selectedStyle = fancy[parseInt(id) - 1];
+        if (selectedStyle) {
+            return await reply(fancy.apply(selectedStyle, text));
+        } else {
+            return await reply('_Style not found :(_');
+        }
+    } catch (error) {
+        console.error(error);
+        return await reply('_An error occurred :(_');
+    }
+});

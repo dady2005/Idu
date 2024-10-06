@@ -1,135 +1,114 @@
-import fetch from 'node-fetch';
-import ytSearch from 'yt-search';
-import ytdl from 'ytdl-core';
-import axios from 'axios';
+import fetch from 'node-fetch'
+import yts from 'yt-search'
 
-let handler = async (m, { command, conn, text }) => {
-  if (!text) {
-    throw "No text to search, please enter the name of the song you want to play.\n\n*EXAMPLE:\n#play2  - Hope xxxtentacion*";
-  }
-  try {
-    if (command === "play") {
-      conn.reply(m.chat, "*_sending your audio..._*", m);
-      try {
-        let response = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`);
-        let result = await response.json();
-        let sent = await conn.sendMessage(m.chat, {
-          'audio': { 'url': result.result.audio },
-          'fileName': "error.mp3",
-          'mimetype': "audio/mp4"
-        }, { 'quoted': m });
-        if (!sent) {
-          await conn.sendFile(m.chat, result.result.audio, "error.mp3", null, m, false, { 'mimetype': "audio/mp4" });
-        }
-      } catch {
-        let ytResult = await ytPlay(text);
-        let audioUrl = ytResult.result2[0].audio || ytResult.result2[1].audio || ytResult.result2[2].audio || ytResult.result2;
-        await conn.sendMessage(m.chat, {
-          'audio': { 'url': audioUrl },
-          'fileName': "error.mp3",
-          'mimetype': "audio/mp4"
-        }, { 'quoted': m });
-      }
+let handler = async (m, { conn: conn, command, args, text, usedPrefix }) => {
+  if (!text) return conn.reply(m.chat, '🐯 Enter the title of a YouTube video or song.\n\n`Example:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m)
+await m.react('🕓')
+    try {
+    let res = await search(args.join(" "))
+    let img = await (await fetch(`${res[0].image}`)).buffer()
+    let txt = '`乂 MICKEY MD YOUTUBE PLAYER`\n\n'
+       txt += `	✩   *Title* : ${res[0].title}\n`
+       txt += `	✩   *Duration* : ${secondString(res[0].duration.seconds)}\n`
+       txt += `	✩   *Published* : ${eYear(res[0].ago)}\n`
+       txt += `	✩   *Canal* : ${res[0].author.name || 'Desconocido'}\n`
+       txt += `	✩   *Url* : ${'https://youtu.be/' + res[0].videoId}\n\n`
+       txt += `> *-*To download reply to this message with *Video* or *Audio*.`
+await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+await m.react('💀')
+} catch {
+await m.react('✖️')
+}}
+handler.help = ['play *<search>*']
+handler.tags = ['downloader']
+handler.command = ['play']
+//handler.register = true 
+export default handler
+
+async function search(query, options = {}) {
+  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
+  return search.videos
+}
+
+function MilesNumber(number) {
+  let exp = /(\d)(?=(\d{3})+(?!\d))/g
+  let rep = "$1."
+  let arr = number.toString().split(".")
+  arr[0] = arr[0].replace(exp, rep)
+  return arr[1] ? arr.join(".") : arr[0]
+}
+
+function secondString(seconds) {
+  seconds = Number(seconds);
+  const d = Math.floor(seconds / (3600 * 24));
+  const h = Math.floor((seconds % (3600 * 24)) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  const dDisplay = d > 0 ? d + (d == 1 ? ' Día, ' : ' Días, ') : '';
+  const hDisplay = h > 0 ? h + (h == 1 ? ' Hora, ' : ' Horas, ') : '';
+  const mDisplay = m > 0 ? m + (m == 1 ? ' Minuto, ' : ' Minutos, ') : '';
+  const sDisplay = s > 0 ? s + (s == 1 ? ' Segundo' : ' Segundos') : '';
+  return dDisplay + hDisplay + mDisplay + sDisplay;
+}
+
+function sNum(num) {
+    return new Intl.NumberFormat('en-GB', { notation: "compact", compactDisplay: "short" }).format(num)
+}
+
+function eYear(txt) {
+    if (!txt) {
+        return '×'
     }
-
-    if (command === "playvid") {
-      conn.reply(m.chat, "*_⏳Processing your video...⏳_*", m);
-      try {
-        let ytVideoResult = await ytPlayVid(text);
-        await conn.sendMessage(m.chat, {
-          'video': { 'url': ytVideoResult.result },
-          'fileName': 'error.mp4',
-          'caption': "_DEMZEL BOT_",
-          'thumbnail': ytVideoResult.thumb,
-          'mimetype': "video/mp4"
-        }, { 'quoted': m });
-      } catch {
-        let response = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`);
-        let result = await response.json();
-        await conn.sendFile(m.chat, result.result.video, "error.mp4", "_XLICON V2 MD_", m);
-      }
+    if (txt.includes('month ago')) {
+        var T = txt.replace("month ago", "").trim()
+        var L = 'does '  + T + ' month'
+        return L
     }
-  } catch (error) {
-    m.reply("*Error occurred, please try again later.*");
-  }
-};
-
-handler.help = ["play", "playvid"].map(cmd => cmd + " <text>");
-handler.tags = ["downloader"];
-handler.command = ["play", 'playvid'];
-export default handler;
-
-function bytesToSize(bytes) {
-  return new Promise((resolve, reject) => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes === 0) return 'n/a';
-    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
-    resolve((bytes / 1024 ** i).toFixed(1) + " " + sizes[i]);
-  });
-}
-
-async function ytMp3(url) {
-  return new Promise((resolve, reject) => {
-    ytdl.getInfo(url).then(async info => {
-      let audioFormats = info.formats.filter(format => format.mimeType === "audio/webm; codecs=\"opus\"");
-      let formatted = [];
-      for (let format of audioFormats) {
-        let size = await bytesToSize(format.contentLength);
-        formatted.push({ 'audio': format.url, 'size': size });
+    if (txt.includes('months ago')) {
+        var T = txt.replace("months ago", "").trim()
+        var L = 'does ' + T + ' months'
+        return L
+    }
+    if (txt.includes('year ago')) {
+        var T = txt.replace("year ago", "").trim()
+        var L = 'does ' + T + ' year'
+        return L
+    }
+    if (txt.includes('years ago')) {
+        var T = txt.replace("years ago", "").trim()
+        var L = 'does ' + T + ' years'
+        return L
+    }
+    if (txt.includes('hour ago')) {
+        var T = txt.replace("hour ago", "").trim()
+        var L = 'does ' + T + ' hour'
+        return L
+    }
+    if (txt.includes('hours ago')) {
+        var T = txt.replace("hours ago", "").trim()
+        var L = 'does ' + T + ' hours'
+        return L
+    }
+    if (txt.includes('minute ago')) {
+        var T = txt.replace("minute ago", "").trim()
+        var L = 'does ' + T + ' minute'
+        return L
+    }
+    if (txt.includes('minutes ago')) {
+        var T = txt.replace("minutes ago", "").trim()
+        var L = 'does ' + T + ' minutes'
+        return L
+    }
+    if (txt.includes('day ago')) {
+        var T = txt.replace("day ago", "").trim()
+        var L = 'does ' + T + ' day'
+        return L
+    }
+    if (txt.includes('days ago')) {
+        var T = txt.replace("days ago", "").trim()
+        var L = 'does ' + T + ' day'
+        return L
+    }
+    return txt
       }
-      let valid = formatted.filter(item => item.audio !== undefined && item.size !== undefined);
-      let shortUrl = await axios.get(`https://tinyurl.com/api-create.php?url=${valid[0].audio}`);
-      resolve({
-        'title': info.videoDetails.title,
-        'result': shortUrl.data,
-        'result2': valid,
-        'thumb': info.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url
-      });
-    }).catch(reject);
-  });
-}
-
-async function ytMp4(url) {
-  return new Promise(async (resolve, reject) => {
-    ytdl.getInfo(url).then(async info => {
-      let videoFormats = info.formats.filter(format => format.container === "mp4" && format.hasVideo === true && format.hasAudio === true);
-      let formatted = [];
-      for (let format of videoFormats) {
-        let size = await bytesToSize(format.contentLength);
-        formatted.push({ 'video': format.url, 'quality': format.qualityLabel, 'size': size });
-      }
-      let valid = formatted.filter(item => item.video !== undefined && item.size !== undefined && item.quality !== undefined);
-      let shortUrl = await axios.get(`https://tinyurl.com/api-create.php?url=${valid[0].video}`);
-      resolve({
-        'title': info.videoDetails.title,
-        'result': shortUrl.data,
-        'result2': valid[0].video,
-        'thumb': info.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url
-      });
-    }).catch(reject);
-  });
-}
-
-async function ytPlay(query) {
-  return new Promise((resolve, reject) => {
-    ytSearch(query).then(async result => {
-      let videos = result.videos.slice(0, 5);
-      let urls = videos.map(video => video.url);
-      let firstUrl = urls[0];
-      let mp3Result = await ytMp3(firstUrl);
-      resolve(mp3Result);
-    }).catch(reject);
-  });
-}
-
-async function ytPlayVid(query) {
-  return new Promise((resolve, reject) => {
-    ytSearch(query).then(async result => {
-      let videos = result.videos.slice(0, 5);
-      let urls = videos.map(video => video.url);
-      let firstUrl = urls[0];
-      let mp4Result = await ytMp4(firstUrl);
-      resolve(mp4Result);
-    }).catch(reject);
-  });
-}
+    

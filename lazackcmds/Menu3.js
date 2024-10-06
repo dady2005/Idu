@@ -45,7 +45,7 @@ let greeting = ucapan()
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 
 let str = ` ❤️ *_Hello ${name}, ${greeting}! Welcome to my menu!_* 🥳
-╭═══〘 DENZEL 𝑩𝑶𝑻 〙═══⊷❍
+╭═══〘 DENZEL V2 〙═══⊷❍
 ┃✰│━━━❮❮ CMD LINE ❯❯━━━━━━
 ┃✰│𝙽𝚊𝚖𝚎: ${global.author}
 ┃✰│𝚃𝚘𝚝𝚊𝚕: 700+ Features
@@ -53,21 +53,21 @@ let str = ` ❤️ *_Hello ${name}, ${greeting}! Welcome to my menu!_* 🥳
 ┃✰│ᴠᴇʀꜱɪᴏɴ: BETA
 ┃✰│ᴏᴡɴᴇʀ : *DENZEL*      
 ┃✰│ɴᴜᴍʙᴇʀ: 255612130873
-┃✰│HOSTER: *Mickey™ Platform*
+┃✰│HOSTER: *Silva Platform*
 ┃✰│ᴍᴏᴅᴇ: *Unkown*
 ┃✰│ᴘʀᴇғɪx: *Multi-Prefix*
 ┃✰│Uptime: ${uptime}               
 ┃✰│Today's Date: ${date}           
 ┃✰│Current Time: ${wib}            
 ┃✰│──────────●●►
-┃✰│𝕏 https://x.com/@Mickey_Mozy
+┃✰│𝕏 https://x.com/@Mickey_mozy
 ┃✰│  ▎▍▌▌▉▏▎▌▉▐▏▌▎
 ┃✰│  ▎▍▌▌▉▏▎▌▉▐▏▌▎
-┃✰│   © 𝙈𝙄𝘾𝙆𝙀𝙔™ 𝘽𝙊𝙏𝙎
+┃✰│   © MICKEY BOTS
 ╰──────────────────
-Thank you for choosing Denzel v2
-powered by Mickey™
-█▓▒▒░░░DENZEL V2 ░░░▒▒▓█
+Thank you for choosing denzel bots
+powered by Mickdadi❤️
+█▓▒▒░░░DENZEL V2 ░░░▒▒▓█`
 
 let msg = generateWAMessageFromContent(m.chat, {
 
@@ -90,7 +90,7 @@ let msg = generateWAMessageFromContent(m.chat, {
           }),
 
           header: proto.Message.InteractiveMessage.Header.create({
-          ...(await prepareWAMessageMedia({ image : { url: 'https://i.imgur.com/zELA03x.jpeg'}}, { upload: conn.waUploadToServer})), 
+          ...(await prepareWAMessageMedia({ image : { url: 'https://files.catbox.moe/s9kq70.jpg'}}, { upload: conn.waUploadToServer})), 
             title: null,
             subtitle: null,
             hasMediaAttachment: false
@@ -101,7 +101,7 @@ let msg = generateWAMessageFromContent(m.chat, {
               {
                 "name": "single_select",
                 "buttonParamsJson": 
-                                "{\"title\":\"TAP TO OPEN\",\"sections\":[{\"title\":\"HERE IS ALL LIST OF MENU\",\"highlight_label\":\"Mickey\",\"rows\":[{\"header\":\"\",\"title\":\"💀 Bot Menu\",\"description\":\"The Bot's secret control panel. What's your command, oh great one?\",\"id\":\".botmenu\"},{\"header\":\"\",\"title\":\"📚 Owner Menu\",\"description\":\"The sacred scroll only for the chosen one. Yep, that's you, Boss!\",\"id\":\".ownermenu\"},{\"header\":\"\",\"title\":\"🧑‍🤝‍🧑 Group Menu\",\"description\":\"Group shenanigans central! Unite, chat, conquer!\",\"id\":\".groupmenu\"},{\"header\":\"\",\"title\":\"📥 Download Menu\",\"description\":\"'DL' stands for 'Delicious Loot'. Come grab your goodies!\",\"id\":\".dlmenu\"},{\"header\":\"\",\"title\":\"🎉 Fun Menu\",\"description\":\"The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\",\"id\":\".funmenu\"},{\"header\":\"\",\"title\":\"💰 Economy Menu\",\"description\":\"Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\",\"id\":\".economymenu\"},{\"header\":\"\",\"title\":\"🎮 Game Menu\",\"description\":\"Enter the gaming arena. May the odds be ever in your favor!\",\"id\":\".gamemenu\"},{\"header\":\"\",\"title\":\"🎨 Sticker Menu\",\"description\":\"A rainbow of stickers for your inner artist. Make your chats pop!\",\"id\":\".stickermenu\"},{\"header\":\"\",\"title\":\"🧰 Tool Menu\",\"description\":\"Your handy-dandy toolkit. What's your pick, genius?\",\"id\":\".toolmenu\"},{\"header\":\"\",\"title\":\"🎩 Logo Menu\",\"description\":\"Create a logo that screams YOU. Or whispers. You choose the volume.\",\"id\":\".logomenu\"},{\"header\":\"\",\"title\":\"🌙 NSFW Menu\",\"description\":\"The After Dark menu. But remember, sharing adult secrets must be consent-based.\",\"id\":\".nsfwmenu\"}]}]}" 
+                                "{\"title\":\"TAP TO OPEN\",\"sections\":[{\"title\":\"HERE IS ALL LIST OF MENU\",\"highlight_label\":\"MICKEY\",\"rows\":[{\"header\":\"\",\"title\":\"💀 Bot Menu\",\"description\":\"The Bot's secret control panel. What's your command, oh great one?\",\"id\":\".botmenu\"},{\"header\":\"\",\"title\":\"📚 Owner Menu\",\"description\":\"The sacred scroll only for the chosen one. Yep, that's you, Boss!\",\"id\":\".ownermenu\"},{\"header\":\"\",\"title\":\"🧑‍🤝‍🧑 Group Menu\",\"description\":\"Group shenanigans central! Unite, chat, conquer!\",\"id\":\".groupmenu\"},{\"header\":\"\",\"title\":\"📥 Download Menu\",\"description\":\"'DL' stands for 'Delicious Loot'. Come grab your goodies!\",\"id\":\".dlmenu\"},{\"header\":\"\",\"title\":\"🎉 Fun Menu\",\"description\":\"The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\",\"id\":\".funmenu\"},{\"header\":\"\",\"title\":\"💰 Economy Menu\",\"description\":\"Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\",\"id\":\".economymenu\"},{\"header\":\"\",\"title\":\"🎮 Game Menu\",\"description\":\"Enter the gaming arena. May the odds be ever in your favor!\",\"id\":\".gamemenu\"},{\"header\":\"\",\"title\":\"🎨 Sticker Menu\",\"description\":\"A rainbow of stickers for your inner artist. Make your chats pop!\",\"id\":\".stickermenu\"},{\"header\":\"\",\"title\":\"🧰 Tool Menu\",\"description\":\"Your handy-dandy toolkit. What's your pick, genius?\",\"id\":\".toolmenu\"},{\"header\":\"\",\"title\":\"🎩 Logo Menu\",\"description\":\"Create a logo that screams YOU. Or whispers. You choose the volume.\",\"id\":\".logomenu\"},{\"header\":\"\",\"title\":\"🌙 NSFW Menu\",\"description\":\"The After Dark menu. But remember, sharing adult secrets must be consent-based.\",\"id\":\".nsfwmenu\"}]}]}" 
                 },
                  {
                 "name": "quick_reply",
@@ -113,7 +113,7 @@ let msg = generateWAMessageFromContent(m.chat, {
                   },
                   {
                   "name": "cta_url",
-                 "buttonParamsJson": "{\"display_text\":\"BOT SC 🎉\",\"url\":\"https://github.com/Mickeymozy/Denzel-V2\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
+                 "buttonParamsJson": "{\"display_text\":\"BOT SC 🎉\",\"url\":\"https://github.com/Dady24/Denzel-V2/\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
               }
            ],
           })
@@ -132,7 +132,7 @@ await conn.relayMessage(msg.key.remoteJid, msg.message, {
 }
 handler.help = ['main']
 handler.tags = ['group']
-handler.command = ['menu3', 'Mick','h','commands'] 
+handler.command = ['menu', 'help','Mick','commands'] 
 
 export default handler
 function clockString(ms) {
@@ -157,5 +157,4 @@ function clockString(ms) {
        res = "Good Night 🌙"
       }
       return res
-                  }
-          
+    }

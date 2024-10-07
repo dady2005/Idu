@@ -1,135 +1,167 @@
-import fetch from 'node-fetch';
-import ytSearch from 'yt-search';
-import ytdl from 'ytdl-core';
-import axios from 'axios';
+import fetch from "node-fetch";
+import ytdl from 'youtubedl-core';
+import yts from 'youtube-yts';
+import fs from 'fs';
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+import os from 'os';
 
-let handler = async (m, { command, conn, text }) => {
-  if (!text) {
-    throw "No text to search, please enter the name of the song you want to play.\n\n*EXAMPLE:\n#play2  - Hope xxxtentacion*";
-  }
-  try {
-    if (command === "play") {
-      conn.reply(m.chat, "*_sending your audio..._*", m);
-      try {
-        let response = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`);
-        let result = await response.json();
-        let sent = await conn.sendMessage(m.chat, {
-          'audio': { 'url': result.result.audio },
-          'fileName': "error.mp3",
-          'mimetype': "audio/mp4"
-        }, { 'quoted': m });
-        if (!sent) {
-          await conn.sendFile(m.chat, result.result.audio, "error.mp3", null, m, false, { 'mimetype': "audio/mp4" });
-        }
-      } catch {
-        let ytResult = await ytPlay(text);
-        let audioUrl = ytResult.result2[0].audio || ytResult.result2[1].audio || ytResult.result2[2].audio || ytResult.result2;
-        await conn.sendMessage(m.chat, {
-          'audio': { 'url': audioUrl },
-          'fileName': "error.mp3",
-          'mimetype': "audio/mp4"
-        }, { 'quoted': m });
-      }
-    }
+const streamPipeline = promisify(pipeline);
 
-    if (command === "playvid") {
-      conn.reply(m.chat, "*_⏳Processing your video...⏳_*", m);
-      try {
-        let ytVideoResult = await ytPlayVid(text);
-        await conn.sendMessage(m.chat, {
-          'video': { 'url': ytVideoResult.result },
-          'fileName': 'error.mp4',
-          'caption': "_DEMZEL BOT_",
-          'thumbnail': ytVideoResult.thumb,
-          'mimetype': "video/mp4"
-        }, { 'quoted': m });
-      } catch {
-        let response = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`);
-        let result = await response.json();
-        await conn.sendFile(m.chat, result.result.video, "error.mp4", "_XLICON V2 MD_", m);
-      }
-    }
-  } catch (error) {
-    m.reply("*Error occurred, please try again later.*");
-  }
+const handler = async (m, {
+    conn,
+    command,
+    text,
+    args,
+    usedPrefix
+}) => {
+    if (!text) throw `give a text to search Example: *${usedPrefix + command}* Jesus Christ song`;
+    conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {};
+    await conn.reply(m.chat, wait, m);
+    const result = await searchAndDownloadMusic(text);
+    const infoText = `🔰──『 *XLICON-V2 PLAYER* 』── 🔰`;
+
+const orderedLinks = result.allLinks.map((link, index) => {
+    const sectionNumber = index + 1;
+    const {
+        title,
+        url
+    } = link;
+    return `*${sectionNumber}.* ${title}`;
+});
+
+    const orderedLinksText = orderedLinks.join("\n\n");
+    const fullText = `${infoText}\n\n${orderedLinksText}`;
+    const {
+        key
+    } = await conn.reply(m.chat, fullText, m);
+    conn.GURUPLAY[m.sender] = {
+        result,
+        key,
+        timeout: setTimeout(() => {
+            conn.sendMessage(m.chat, {
+                delete: key
+            });
+            delete conn.GURUPLAY[m.sender];
+        }, 60 * 1000),
+    };
 };
 
-handler.help = ["play", "playvid"].map(cmd => cmd + " <text>");
+handler.before = async (m, {
+    conn
+}) => {
+    conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {};
+    if (m.isBaileys || !(m.sender in conn.GURUPLAY)) return;
+    const {
+        result,
+        key,
+        timeout
+    } = conn.GURUPLAY[m.sender];
+    if (!m.quoted || m.quoted.id !== key.id || !m.text) return;
+    const choice = m.text.trim();
+    const inputNumber = Number(choice);
+    if (inputNumber >= 1 && inputNumber <= result.allLinks.length) {
+        const selectedUrl = result.allLinks[inputNumber - 1].url;
+        console.log("selectedUrl", selectedUrl)
+    let title = generateRandomName();
+        const audioStream = ytdl(selectedUrl, {
+            filter: 'audioonly',
+            quality: 'highestaudio',
+        });
+    
+      
+        
+        const tmpDir = os.tmpdir();
+        
+        
+        const writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`);
+    
+        
+        await streamPipeline(audioStream, writableStream);
+
+        const doc = {
+            audio: {
+            url: `${tmpDir}/${title}.mp3`
+            },
+            mimetype: 'audio/mpeg',
+            ptt: false,
+            waveform: [100, 0, 0, 0, 0, 0, 100],
+            fileName: `${title}`,
+        
+        };
+    
+        await conn.sendMessage(m.chat, doc, { quoted: m });
+    
+    
+        clearTimeout(timeout);
+        delete conn.GURUPLAY[m.sender];
+    } else {
+        m.reply("Invalid sequence number. Please select the appropriate number from the list above.\nBetween 1 to " + result.allLinks.length);
+    }
+};
+
+handler.help = ["play"];
 handler.tags = ["downloader"];
-handler.command = ["play", 'playvid'];
+handler.command = /^(play)$/i;
+handler.limit = true;
 export default handler;
 
-function bytesToSize(bytes) {
-  return new Promise((resolve, reject) => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes === 0) return 'n/a';
-    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
-    resolve((bytes / 1024 ** i).toFixed(1) + " " + sizes[i]);
-  });
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return "0 B";
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 }
 
-async function ytMp3(url) {
-  return new Promise((resolve, reject) => {
-    ytdl.getInfo(url).then(async info => {
-      let audioFormats = info.formats.filter(format => format.mimeType === "audio/webm; codecs=\"opus\"");
-      let formatted = [];
-      for (let format of audioFormats) {
-        let size = await bytesToSize(format.contentLength);
-        formatted.push({ 'audio': format.url, 'size': size });
-      }
-      let valid = formatted.filter(item => item.audio !== undefined && item.size !== undefined);
-      let shortUrl = await axios.get(`https://tinyurl.com/api-create.php?url=${valid[0].audio}`);
-      resolve({
-        'title': info.videoDetails.title,
-        'result': shortUrl.data,
-        'result2': valid,
-        'thumb': info.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url
-      });
-    }).catch(reject);
-  });
+async function searchAndDownloadMusic(query) {
+    try {
+        const { videos } = await yts(query);
+        if (!videos.length) return "Sorry, no video results were found for this search.";
+
+        const allLinks = videos.map(video => ({
+            title: video.title,
+            url: video.url,
+        }));
+
+        const jsonData = {
+            title: videos[0].title,
+            description: videos[0].description,
+            duration: videos[0].duration,
+            author: videos[0].author.name,
+            allLinks: allLinks,
+            videoUrl: videos[0].url,
+            thumbnail: videos[0].thumbnail,
+        };
+
+        return jsonData;
+    } catch (error) {
+        return "Error: " + error.message;
+    }
 }
 
-async function ytMp4(url) {
-  return new Promise(async (resolve, reject) => {
-    ytdl.getInfo(url).then(async info => {
-      let videoFormats = info.formats.filter(format => format.container === "mp4" && format.hasVideo === true && format.hasAudio === true);
-      let formatted = [];
-      for (let format of videoFormats) {
-        let size = await bytesToSize(format.contentLength);
-        formatted.push({ 'video': format.url, 'quality': format.qualityLabel, 'size': size });
-      }
-      let valid = formatted.filter(item => item.video !== undefined && item.size !== undefined && item.quality !== undefined);
-      let shortUrl = await axios.get(`https://tinyurl.com/api-create.php?url=${valid[0].video}`);
-      resolve({
-        'title': info.videoDetails.title,
-        'result': shortUrl.data,
-        'result2': valid[0].video,
-        'thumb': info.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url
-      });
-    }).catch(reject);
-  });
+
+async function fetchVideoBuffer() {
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+        return await response.buffer();
+    } catch (error) {
+        return null;
+    }
 }
 
-async function ytPlay(query) {
-  return new Promise((resolve, reject) => {
-    ytSearch(query).then(async result => {
-      let videos = result.videos.slice(0, 5);
-      let urls = videos.map(video => video.url);
-      let firstUrl = urls[0];
-      let mp3Result = await ytMp3(firstUrl);
-      resolve(mp3Result);
-    }).catch(reject);
-  });
-}
-
-async function ytPlayVid(query) {
-  return new Promise((resolve, reject) => {
-    ytSearch(query).then(async result => {
-      let videos = result.videos.slice(0, 5);
-      let urls = videos.map(video => video.url);
-      let firstUrl = urls[0];
-      let mp4Result = await ytMp4(firstUrl);
-      resolve(mp4Result);
-    }).catch(reject);
-  });
-          }
+function generateRandomName() {
+    const adjectives = ["happy", "sad", "funny", "brave", "clever", "kind", "silly", "wise", "gentle", "bold"];
+    const nouns = ["cat", "dog", "bird", "tree", "river", "mountain", "sun", "moon", "star", "cloud"];
+    
+    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+    
+    return randomAdjective + "-" + randomNoun;
+                         }

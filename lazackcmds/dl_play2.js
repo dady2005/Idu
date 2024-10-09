@@ -1,167 +1,79 @@
-import fetch from "node-fetch";
-import ytdl from 'youtubedl-core';
-import yts from 'youtube-yts';
-import fs from 'fs';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
-import os from 'os';
+import fg from 'api-dylux';
+import yts from 'yt-search';
+import fetch from 'node-fetch';
+import axios from 'axios';
 
-const streamPipeline = promisify(pipeline);
 
-const handler = async (m, {
-    conn,
-    command,
-    text,
-    args,
-    usedPrefix
-}) => {
-    if (!text) throw `give a text to search Example: *${usedPrefix + command}* Jesus Christ song`;
-    conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {};
-    await conn.reply(m.chat, wait, m);
-    const result = await searchAndDownloadMusic(text);
-    const infoText = `🔰──『 *XLICON-V2 PLAYER* 』── 🔰`;
+const imgUrl = 'https://telegra.ph/file/d257d118b743b15b83c30.jpg';
 
-const orderedLinks = result.allLinks.map((link, index) => {
-    const sectionNumber = index + 1;
-    const {
-        title,
-        url
-    } = link;
-    return `*${sectionNumber}.* ${title}`;
-});
-
-    const orderedLinksText = orderedLinks.join("\n\n");
-    const fullText = `${infoText}\n\n${orderedLinksText}`;
-    const {
-        key
-    } = await conn.reply(m.chat, fullText, m);
-    conn.GURUPLAY[m.sender] = {
-        result,
-        key,
-        timeout: setTimeout(() => {
-            conn.sendMessage(m.chat, {
-                delete: key
-            });
-            delete conn.GURUPLAY[m.sender];
-        }, 60 * 1000),
-    };
-};
-
-handler.before = async (m, {
-    conn
-}) => {
-    conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {};
-    if (m.isBaileys || !(m.sender in conn.GURUPLAY)) return;
-    const {
-        result,
-        key,
-        timeout
-    } = conn.GURUPLAY[m.sender];
-    if (!m.quoted || m.quoted.id !== key.id || !m.text) return;
-    const choice = m.text.trim();
-    const inputNumber = Number(choice);
-    if (inputNumber >= 1 && inputNumber <= result.allLinks.length) {
-        const selectedUrl = result.allLinks[inputNumber - 1].url;
-        console.log("selectedUrl", selectedUrl)
-    let title = generateRandomName();
-        const audioStream = ytdl(selectedUrl, {
-            filter: 'audioonly',
-            quality: 'highestaudio',
-        });
+let handler = async (m, { conn, args, usedPrefix, text, command }) => {
+    let lister = ["mp3", "yta", "audio", "ytv", "video", "vídeo", "mp4", "mp3doc", "ytadoc", "audiodoc", "mp4doc", "ytvdoc", "videodoc", "vídeodoc"];
     
-      
-        
-        const tmpDir = os.tmpdir();
-        
-        
-        const writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`);
+    let [format, ...keywords] = text.split(" ");
+    let searchQuery = keywords.join(" ");
     
-        
-        await streamPipeline(audioStream, writableStream);
-
-        const doc = {
-            audio: {
-            url: `${tmpDir}/${title}.mp3`
-            },
-            mimetype: 'audio/mpeg',
-            ptt: false,
-            waveform: [100, 0, 0, 0, 0, 0, 100],
-            fileName: `${title}`,
-        
-        };
-    
-        await conn.sendMessage(m.chat, doc, { quoted: m });
-    
-    
-        clearTimeout(timeout);
-        delete conn.GURUPLAY[m.sender];
-    } else {
-        m.reply("Invalid sequence number. Please select the appropriate number from the list above.\nBetween 1 to " + result.allLinks.length);
+    if (!lister.includes(format)) {
+        return conn.reply(m.chat, `*💙 𝙸𝚗𝚐𝚛𝚎𝚜𝚊 𝚎𝚕 𝚏𝚘𝚛𝚖𝚊𝚝𝚘 𝚎𝚗 𝚚𝚞𝚎 𝚍𝚎𝚜𝚎𝚊𝚜 𝚍𝚎𝚜𝚌𝚊𝚛𝚐𝚊𝚛 𝚖á𝚜 𝚎𝚕 𝚝í𝚝𝚞𝚕𝚘 𝚍𝚎 𝚞𝚗 𝚟𝚒𝚍𝚎𝚘 𝚘 𝚖ú𝚜𝚒𝚌𝚊 𝚍𝚎 𝚈𝚘𝚞𝚃𝚞𝚋𝚎.*\n\n𝙴𝚓𝚎𝚖𝚙𝚕𝚘: ${usedPrefix + command} *mp3* Connor RK800 - I Am Machine\n\n𝙵𝚘𝚛𝚖𝚊𝚝𝚘𝚜 𝚍𝚒𝚜𝚙𝚘𝚗𝚒𝚋𝚕𝚎𝚜:\n${lister.map(f => `${usedPrefix + command} *${f}*`).join('\n')}`, m);
     }
-};
-
-handler.help = ["play"];
-handler.tags = ["downloader"];
-handler.command = /^(play)$/i;
-handler.limit = true;
-export default handler;
-
-function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-}
-
-async function searchAndDownloadMusic(query) {
-    try {
-        const { videos } = await yts(query);
-        if (!videos.length) return "Sorry, no video results were found for this search.";
-
-        const allLinks = videos.map(video => ({
-            title: video.title,
-            url: video.url,
-        }));
-
-        const jsonData = {
-            title: videos[0].title,
-            description: videos[0].description,
-            duration: videos[0].duration,
-            author: videos[0].author.name,
-            allLinks: allLinks,
-            videoUrl: videos[0].url,
-            thumbnail: videos[0].thumbnail,
-        };
-
-        return jsonData;
-    } catch (error) {
-        return "Error: " + error.message;
+    
+    if (!searchQuery) {
+        return conn.reply(m.chat, `*💙 𝙸𝚗𝚐𝚛𝚎𝚜𝚊 𝚎𝚕 𝚝í𝚝𝚞𝚕𝚘 𝚍𝚎 𝚞𝚗 𝚟𝚒𝚍𝚎𝚘 𝚘 𝚖ú𝚜𝚒𝚌𝚊 𝚍𝚎 𝚈𝚘𝚞𝚃𝚞𝚋𝚎.*`, m);
     }
-}
-
-
-async function fetchVideoBuffer() {
+    
     try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
+        await m.react('🕓');
+        
+    
+        const responseImg = await axios.get(imgUrl, { responseType: 'arraybuffer' });
+
+        let res = await yts(searchQuery);
+        let vid = res.videos[0];
+        let q = '128kbps';
+        
+        let txt = `❏ 𝚃𝙸𝚃𝚄𝙻𝙾: ${vid.title}\n`;
+        txt += `❏ 𝙳𝚄𝚁𝙰𝙲𝙸𝙾𝙽: ${vid.timestamp}\n`;
+        txt += `❏ 𝚅𝙸𝚂𝙸𝚃𝙰𝚂: ${vid.views}\n`;
+        txt += `❏ 𝙰𝚄𝚃𝙾𝚁: ${vid.author.name}\n`;
+        txt += `❏ 𝙿𝚞𝚋𝚕𝚒𝚌𝚊𝚍𝚘: ${vid.ago}\n`;
+        txt += `❏ 𝚄𝚁𝙻: https://youtu.be/${vid.videoId}\n\n`;
+        txt += `❄𝚁𝚎𝚌𝚞𝚎𝚛𝚍𝚊 @${m.sender.split('@')[0]}, 𝙲𝚞𝚛𝚒 𝚎𝚜 𝚖𝚒 𝚘𝚠𝚗𝚎𝚛 𝚜𝚒 𝚟𝚊𝚜 𝚊 𝚌𝚊𝚛𝚐𝚊𝚛 𝚕𝚘𝚜 𝚙𝚕𝚞𝚐𝚒𝚗𝚜 𝚍𝚊 𝚌𝚛𝚎𝚍𝚒𝚝𝚘𝚜❄`;
+
+        
+        await conn.sendFile(m.chat, responseImg.data, "thumbnail.jpg", txt, m, null, rcanal);
+
+        if (format == "mp3" || format == "yta" || format == "audio" || format == "mp3doc" || format == "ytadoc" || format == "audiodoc") {
+            let yt = await fg.yta(vid.url, q);
+            let { title, dl_url, size } = yt;
+            let limit = 100;
+            
+            if (parseFloat(size.split('MB')[0]) >= limit) {
+                return conn.reply(m.chat, `𝙴𝚕 𝚊𝚛𝚌𝚑𝚒𝚟𝚘 𝚙𝚎𝚜𝚊 𝚖á𝚜 𝚍𝚎 ${limit} 𝙼𝙱, 𝚜𝚎 𝚌𝚊𝚗𝚌𝚎𝚕ó 𝚕𝚊 𝙳𝚎𝚜𝚌𝚊𝚛𝚐𝚊.`, m);
             }
-        });
-        return await response.buffer();
+            
+            await conn.sendFile(m.chat, dl_url, 'yt.mp3', `${vid.title}.mp3`, m);
+            await m.react('✅');
+        } else if (format == "mp4" || format == "ytv" || format == "video" || format == "mp4doc" || format == "ytvdoc" || format == "videodoc" || format == "videodoc") {
+            let q = '720p';
+            let yt = await fg.ytv(vid.url, q);
+            let { title, dl_url, size } = yt;
+            let limit = 500;
+            
+            if (parseFloat(size.split('MB')[0]) >= limit) {
+                return conn.reply(m.chat, `𝙴𝚕 𝚊𝚛𝚌𝚑𝚒𝚟𝚘 𝚙𝚎𝚜𝚊 𝚖á𝚜 𝚍𝚎 ${limit} 𝙼𝙱, 𝚜𝚎 𝚌𝚊𝚗𝚌𝚎𝚕ó 𝚕𝚊 𝙳𝚎𝚜𝚌𝚊𝚛𝚐𝚊.`, m);
+            }
+            
+            await conn.sendFile(m.chat, dl_url, 'yt.mp4', `${vid.title}.mp4`, m);
+            await m.react('✅');
+        }
     } catch (error) {
-        return null;
+        await conn.reply(m.chat, `ɴᴏ ᴇꜱᴛᴀ ɪɴꜱᴛᴀʟᴀᴅᴏ ꜰꜰᴍᴘɢ ᴠᴜᴇʟᴠᴀ ᴀʟ ʀᴇᴘᴏꜱɪᴛᴏʀɪᴏ ᴘᴀʀᴀ ᴄʜᴇᴄᴀʀ ᴄᴏᴍᴏ ɪɴꜱᴛᴀʟᴀʀʟᴏ`, m);
+        console.error(error);
     }
-}
+};
 
-function generateRandomName() {
-    const adjectives = ["happy", "sad", "funny", "brave", "clever", "kind", "silly", "wise", "gentle", "bold"];
-    const nouns = ["cat", "dog", "bird", "tree", "river", "mountain", "sun", "moon", "star", "cloud"];
-    
-    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    
-    return randomAdjective + "-" + randomNoun;
-                         }
+handler.help = ["play"].map(v => v + " <formato> <búsqueda>");
+handler.tags = ["downloader"];
+handler.command = ['play'];
+handler.register = true;
+
+export default handler;

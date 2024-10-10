@@ -71,28 +71,8 @@ let str = `
 ╚═══════════════════════╝
 
 乂───『 *INFO*』───乂 
-│ *Simple menu*
-│ *_TRY NOT TO LAUGH_*
-╰───────⳹
-╭───────⳹
-│ *1.* Bot Menu
-│ *2.* Owner Menu
-│ *3.* Group Menu
-│ *4.* Fun Menu
-│ *5.* Reaction Menu
-│ *6.* Downloader Menu
-│ *7.* Game Menu
-│ *8.* Logo Menu
-│ *9.* Sticker Menu
-│ *10.* Audio Menu
-│ *11.* News Menu
-│ *12.* Economy Menu
-│ *13.* Anime Menu
-│ *14.* NSFW Menu
-│ *15.* Tools Menu
-│ *16.* AI Menu
-│ *17.* Religion Menu
-│ *18.* Plugin Menu
+│ *Denzel v2*
+│ *__*
 ╰───────⳹
 
 > 💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡

@@ -8,6 +8,7 @@ export async function all(m) {
       m.text.startsWith('Oy') ||
       m.text.startsWith('Niaje') ||
       m.text.startsWith('kaka')) &&
+      m.text.startsWith('Mick') ||
     !m.isBaileys &&
     !m.isGroup
  /* ) {
@@ -22,7 +23,7 @@ export async function all(m) {
     KARIBU SANA@${m.sender.split('@')[0]} 
     KUWA NA SUBRA NITAKUJA HEWANI MDA SIO MREFU  😇
   `.trim(), igfg, null, [['OWNER HELP', '.grp'],['GET TEXT', '.repo']] , m, { mentions: [m.sender] })
-    m.react('🤫')
+    m.react('🥱')
   }
 
   return !0

@@ -72,11 +72,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 ▢ YouTube : 
   • https://www.youtube.com/@MickdadyHamzaMickey_mozy
 ▢ credit: 
-  • mr oreo
+  • mr Mickey
 
  *≡ S E R V E R*
-*🛑 RAM:* ${format(totalmem() - freemem())} / ${format(totalmem())}
-*🔵 FreeRAM:* ${format(freemem())}
+* RAM:* ${format(totalmem() - freemem())} / ${format(totalmem())}
+* FreeRAM:* ${format(freemem())}
 
 *≡  NodeJS memory*
 ${

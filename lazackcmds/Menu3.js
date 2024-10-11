@@ -132,7 +132,7 @@ await conn.relayMessage(msg.key.remoteJid, msg.message, {
 }
 handler.help = ['main']
 handler.tags = ['group']
-handler.command = ['menu', 'help','h','commands'] 
+handler.command = ['menu3', 'help','Mickey','commands'] 
 
 export default handler
 function clockString(ms) {

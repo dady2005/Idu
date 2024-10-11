@@ -9,12 +9,12 @@ let handler = async (m, { conn }) => {
 
     let techNews = `•───── ୨❀୧ ─────•
     ❖ 𝑺𝑻𝑨𝑻𝑼𝑺: Active
-    ㋡ 𝑪𝑹𝑬𝑨𝑻𝑶𝑹: GURU
+    ㋡ 𝑪𝑹𝑬𝑨𝑻𝑶𝑹: MICKEY 
     ☞ 𝑵𝑬𝑾𝑺: ${json.news}
       •───── ୨❀୧ ─────•
     `
 
-    conn.sendFile(m.chat, json.thumbnail, 'thumbnail.jpg', techNews, m)
+    conn.sendFile(m.chat, json.thumbnail, 'https://telegra.ph/file/d257d118b743b15b83c30.jpg', techNews, m)
 
     m.react(done)
   } catch (e) {

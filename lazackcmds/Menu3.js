@@ -52,8 +52,8 @@ let str = ` ❤️ *_Hello ${name}, ${greeting}! Welcome to my three menu!_* �
 ┃✰│Network:LTE
 ┃✰│ᴠᴇʀꜱɪᴏɴ: BETA
 ┃✰│ᴏᴡɴᴇʀ : *DENZEL*      
-NUMBER: 255612130873
-┃✰│HOSTER: *Mickdady*
+┃✰│NUMBER: 255612130873
+┃✰│Hoster: *Mickdady*
 ┃✰│ᴍᴏᴅᴇ: *Unkown*
 ┃✰│ᴘʀᴇғɪx: *Multi-Prefix*
 ┃✰│Uptime: ${uptime}               

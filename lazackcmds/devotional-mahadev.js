@@ -17,6 +17,6 @@ if (response.ok) {
 }
 
 handler.tags = ['images']
-handler.help = handler.command = ['Support', 'Team']
+handler.help = handler.command = ['denzel', 'Team']
 
 export default handler

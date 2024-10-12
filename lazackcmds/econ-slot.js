@@ -4,7 +4,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         return conn.reply(m.chat, 'You must be at least level 5 to use this command.', m);
     }*/
 
-  let fa = `🟥 *Provide the amount of gold to bet*
+  let fa = ` *Provide the amount of gold to bet*
 
 *Example :
 ${usedPrefix + command} 500*`.trim()
@@ -16,11 +16,11 @@ ${usedPrefix + command} 500*`.trim()
   let time = users.lastslot + 10000
   if (new Date() - users.lastslot < 10000)
     throw `⏳ Wait *${msToTime(time - new Date())}* to use again`
-  if (amount < 500) throw `🟥 *You can't bet gold less than 500*`
+  if (amount < 500) throw ` *You can't bet gold less than 500*`
   if (users.credit < amount) {
-    throw `🟥 *You do not have enough gold to bet*`
+    throw ` *You do not have enough gold to bet*`
   }
-  if (amount > 100000) throw `🟥 *You can't bet gold more than 100000*`
+  if (amount > 100000) throw ` *You can't bet gold more than 100000*`
 
   let emojis = ['🕊️', '🦀', '🦎']
   let a = Math.floor(Math.random() * emojis.length)

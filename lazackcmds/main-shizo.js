@@ -2,14 +2,13 @@ let handler = async m =>
   m.reply(
     `
 
-≡ 𝐋𝐀𝐙𝐀𝐂𝐊-𝐌𝐃 GROUPS
+≡ *MICKEY†' GROUPS
 
 ─────────────
 ▢ Join public bot group and support
-https://chat.whatsapp.com/IIpL6gf6dcq4ial8gaJLE9
-
+https://chat.whatsapp.com/CAKGysbedAWCrGmrm5bOiz
 ▢ Group 2
-https://whatsapp.com/channel/0029VaFytPbAojYm7RIs6l1x
+ht
 
 ─────────────
 ≡ Disabled links? enter here! 
@@ -18,10 +17,10 @@ https://whatsapp.com/channel/0029VaFytPbAojYm7RIs6l1x
  https://whatsapp.com/channel/0029VaFytPbAojYm7RIs6l1x
 ─────────────
 ▢ *Owner instagram*
- https://instagram.com/Lazack_28
+ https://instagram.com/MIickey_mozy24
 
 ▢ *YouTube*
-• https://www.youtube.com/@lazack_28
+• https://www.youtube.com/Mickey
 
 
 `.trim()

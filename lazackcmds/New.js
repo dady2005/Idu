@@ -19,6 +19,6 @@ let handler = async m =>
   )
 handler.help = ['ruth']
 handler.tags = ['main']
-handler.command = ['Mickey']
+handler.command = ['salamu']
 
 export default handler

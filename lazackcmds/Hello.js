@@ -18,9 +18,9 @@ export async function all(m) {
       },
       { quoted: m }*/
     ) {
-    this.sendButton(m.chat, `*ASANTE KWA KUWASILIANA NA MICK*      
-    KARIBU SANA@${m.sender.split('@')[0]} 
-    KUWA NA SUBRA NITAKUJA HEWANI MDA SIO MREFU  😇
+    this.sendButton(m.chat, `*FRESH/POUW/HELLOW/KAMAKAWA*      
+    NIPO KWA AJILI YA@${m.sender.split('@')[0]} 
+    NAKUSIKILIZA SHE/HE NAMBIE  😇
   `.trim(), igfg, null, [['OWNER HELP', '.grp'],['GET TEXT', '.repo']] , m, { mentions: [m.sender] })
     m.react('🥱')
   }

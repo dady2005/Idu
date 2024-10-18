@@ -5,9 +5,9 @@ let handler = async (m, { conn }) => {
   let av = `./jusorts/${pickRandom(['lazack', 'mtaju'])}.mp3`
 
 
-conn.sendButton(m.chat, `*HOLA FROM BOT DENZEL*      
-    morning or evening @${m.sender.split('@')[0]} 
-    You called me what is youre problem bro? 😇
+conn.sendButton(m.chat, `*HELLO IM HERE*      
+    FOR YOU @${m.sender.split('@')[0]} 
+    TELL ME WHATEVER I LISTEN ? 🙏
   `.trim(), igfg, null, [['OWNER HELP', '.grp'],['GET SC', '.repo']] , m, { mentions: [m.sender] })
   
 conn.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })

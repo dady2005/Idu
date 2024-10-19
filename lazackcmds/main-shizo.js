@@ -8,7 +8,7 @@ let handler = async m =>
 ▢ Join public bot group and support
 https://chat.whatsapp.com/CAKGysbedAWCrGmrm5bOiz
 ▢ Group 2
-ht
+
 
 ─────────────
 ≡ Disabled links? enter here! 
@@ -27,6 +27,6 @@ ht
   )
 handler.help = ['ruth']
 handler.tags = ['main']
-handler.command = ['groups', 'grouplazack', 'lazackgp', 'sgp', 'grp']
+handler.command = ['groups', 'Mickeygrp','Me', 'grp']
 
 export default handler

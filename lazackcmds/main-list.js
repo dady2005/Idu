@@ -100,10 +100,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 > ➵_${usedPrefix}promote *<@tag>*_
 > ➵_${usedPrefix}demote *<@tag>*_
 > ➵_${usedPrefix}infogroup_
-> ➵_${usedPrefix}resetlink_
+> ➵_${usedPrefix}staff
 > ➵_${usedPrefix}link_
-> ➵_${usedPrefix}setpp *<image>*_
-> ➵_${usedPrefix}setname *<text>*_
+> ➵_${usedPrefix}salamu
+> ➵_${usedPrefix}listonline 
 > ➵_${usedPrefix}setdesc *<text>*_
 > ➵_${usedPrefix}setwelcome *<text>*_
 > ➵_${usedPrefix}setbye *<text>*_
@@ -271,14 +271,14 @@ let handler = async (m, { conn, usedPrefix, command }) => {
      ╰───•••──┄ °❀     
     ┏━♼ ⊖⊖⊖⊖⊖⊖ ♽━┓
 > ➵ _${usedPrefix}autosticker_
-> ➵ _${usedPrefix}pdf_
+> ➵ _${usedPrefix} clock 
 > ➵ _${usedPrefix}whatmusic_
 > ➵ _${usedPrefix}calc_
 > ➵ _${usedPrefix}google_
 > ➵ _${usedPrefix}lyrics_
 > ➵ _${usedPrefix}readmore_
 > ➵ _${usedPrefix}ssweb_
-> ➵ _${usedPrefix}tts_
+> ➵ _${usedPrefix}myip
 > ➵ _${usedPrefix}translate_
 > ➵ _${usedPrefix}tourl_
 > ➵ _${usedPrefix}wikipedia_

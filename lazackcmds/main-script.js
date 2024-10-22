@@ -3,7 +3,7 @@ import { join } from 'path'
 import axios from 'axios'
 
 let handler = async function (m, { conn, __dirname }) {
-  const githubRepoURL = 'https://github.com/Dady24/Denzel-V2'
+  const githubRepoURL = 'https://github.com/Mickeymozy/Denzel-V2/'
 
   try {
     const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/)

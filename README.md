@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://chat.whatsapp.com/ICNOZzsDH9E81j3RlqLx4w">
-    <img alt=Support height="250" src="https://i.imgur.com/XTTRQAc.jpeg"> 
+    <img alt=Support height="250" src="https://i.imgur.com/WKC797Q.jpeg"> 
     </p>
 
 ****[FORK THIS REPO](https://github.com/Dady24/Denzel-V2//fork)****
@@ -21,9 +21,9 @@
 
 ------------------------------------------
 
-**Generate Pair Code For Session**
+**Get in touch with the creator**
+<a href="https://mickdadyhamza.websites.co.in"><img alt='OWNER' src='https://img.shields.io/badge/GET IN TOUCH-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
 
-<a href='https://replit.com/@lazck22/LAZACK-ADVANCE-AND-DEVICE' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/PAIRING CODE-001-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
 
 
      `upload youre given creds.json by editing it on the creds.json file in the session folder, some of the country use vpn to get youre file recomended vpn is Stark vpn`
@@ -55,7 +55,7 @@
 
 ****MAIN DEV EDITOR****
 
- [![Lazack28](https://github.com/Mickeymozy.png?size=100)](https://github.com/Mickeymozy)
+ [![Mickey 24](https://github.com/Mickeymozy.png?size=100)](https://github.com/Mickeymozy)
 
 ----------------------
 

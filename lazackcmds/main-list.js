@@ -17,37 +17,37 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     case 'list':
       lkr =
         '*Get ready for the ride, here are your ticket options:*\n\n' +
-        '🤖 *' +
+        ' *' +
         usedPrefix +
         "botmenu* - The Bot's secret control panel. What's your command, oh great one?\n\n" +
-        '👑 *' +
+        ' *' +
         usedPrefix +
         "ownermenu* - The sacred scroll only for the chosen one. Yep, that's you, Boss!\n\n" +
-        '🧑‍🤝‍🧑 *' +
+        ' *' +
         usedPrefix +
         'groupmenu* - Group shenanigans central! Unite, chat, conquer!\n\n' +
-        '📥 *' +
+        ' *' +
         usedPrefix +
         "dlmenu* - 'DL' stands for 'Delicious Loot'. Come grab your goodies!\n\n" +
-        '🎉 *' +
+        ' *' +
         usedPrefix +
         "funmenu* - The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\n\n" +
-        '💰 *' +
+        ' *' +
         usedPrefix +
         'economymenu* - Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\n\n' +
-        '🎮 *' +
+        ' *' +
         usedPrefix +
         'gamemenu* - Enter the gaming arena. May the odds be ever in your favor!\n\n' +
-        '🎨 *' +
+        ' *' +
         usedPrefix +
         'stickermenu* - A rainbow of stickers for your inner artist. Make your chats pop!\n\n' +
-        '🧰 *' +
+        ' *' +
         usedPrefix +
         "toolmenu* - Your handy-dandy toolkit. What's your pick, genius?\n\n" +
-        '🎩 *' +
+        ' *' +
         usedPrefix +
         'logomenu* - Create a logo that screams YOU. Or whispers. You choose the volume.\n\n' +
-        '🌙 *' +
+        ' *' +
         usedPrefix +
         'nsfwmenu* - The After Dark menu. But remember, sharing adult secrets must be consent-based.'
       break
@@ -107,8 +107,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 > ➵_${usedPrefix}setdesc *<text>*_
 > ➵_${usedPrefix}setwelcome *<text>*_
 > ➵_${usedPrefix}setbye *<text>*_
->➵ _${usedPrefix}hidetag *<text/image/audio/vid>*_
->➵_${usedPrefix}warn *<@tag>*_
+> ➵ _${usedPrefix}hidetag *<text/image/audio/vid>*_
+> ➵_${usedPrefix}warn *<@tag>*_
 > ➵_${usedPrefix}unwarn *<@tag>*_
 > ➵_${usedPrefix}group *<open/close>*_
 > ➵_${usedPrefix}enable
@@ -148,8 +148,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 > ➵ _${usedPrefix}weekly_
 > ➵ _${usedPrefix}monthly_
 > ➵ _${usedPrefix}leaderboard_
->➵  _${usedPrefix}bet_
->➵  _${usedPrefix}heal_
+> ➵  _${usedPrefix}bet_
+> ➵  _${usedPrefix}heal_
 > ➵ _${usedPrefix}craft_
 > ➵ _${usedPrefix}balance_
 > ➵ _${usedPrefix}shop_
@@ -175,11 +175,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 > ➵ _${usedPrefix}gay_
 > ➵ _${usedPrefix}shayeri_
 > ➵ _${usedPrefix}ship_
->  ➵_${usedPrefix}waste_
->  ➵_${usedPrefix}simpcard_
+> ➵_${usedPrefix}waste_
+> ➵_${usedPrefix}simpcard_
 > ➵ _${usedPrefix}hornycard_
->  ➵_${usedPrefix}ytcomment_
->  ➵_${usedPrefix}stupid_
+> ➵_${usedPrefix}ytcomment_
+> ➵_${usedPrefix}stupid_
 > ➵ _${usedPrefix}lolicon_
     ┗━━━━━━━━━━━━━━━⪼` //
       break
@@ -192,7 +192,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 >  _${usedPrefix}neko_
 > ➵ _${usedPrefix}loli_
 > ➵ _${usedPrefix}couplepp_
->➵  _${usedPrefix}toanime_
+> ➵  _${usedPrefix}toanime_
 > ➵ _${usedPrefix}naruto_
 > ➵ _${usedPrefix}itachi_
 > ➵ _${usedPrefix}akira_
@@ -249,11 +249,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
           𝙎𝙏𝙄𝘾𝙆𝙀𝙍 𝙈𝙀𝙉𝙐
      ╰───•••──┄ °❀     
     ┏━♼ ⊖⊖⊖⊖⊖⊖ ♽━┓
->  _${usedPrefix}sticker_
+> ➵ _${usedPrefix}sticker_
 > ➵ _${usedPrefix}take_
 > ➵ _${usedPrefix}scircle_
 > ➵ _${usedPrefix}smaker_
->  _${usedPrefix}sremovebg_
+> ➵ _${usedPrefix}sremovebg_
 > ➵ _${usedPrefix}getsticker_
 > ➵ _${usedPrefix}emojimix_
 > ➵ _${usedPrefix}toimg_
@@ -287,7 +287,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 > ➵ _${usedPrefix}readqr_
 > ➵ _${usedPrefix}fancy_
 > ➵ _${usedPrefix}weather_
-> ➵ _${usedPrefix}siri_
+> ➵ _${usedPrefix}say_
 > ➵ _${usedPrefix}alexa_
 > ➵ _${usedPrefix}dalle_
 > ➵ _${usedPrefix}tocartoon_
@@ -381,10 +381,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   ◈ .ass
   ◈ .boobs
   ◈ .lesbian
-  ◈ .pussy
+  ◈ .
   ◈ .pack
-  ◈ .xvid
-  ◈ .xnxx
+  ◈ 
+  ◈ 
   ╰──────────⳹` //
       break
     case 'logomenu':

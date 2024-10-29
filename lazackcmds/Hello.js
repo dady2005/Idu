@@ -21,7 +21,7 @@ export async function all(m) {
     this.sendButton(m.chat, `*FRESH/POUW/VEAP/KAMAKAWA*      
     NIPO KWA AJILI YA@${m.sender.split('@')[0]} 
     NAKUSIKILIZA SHE/HE NAMBIE  😇
-  `.trim(), igfg, null, [['OWNER HELP', '.grp'],['GET TEXT', '.repo']] , m, { mentions: [m.sender] })
+  `.trim(), igfg, null, [['NAKUSALIMIA', '.'],['AU BASI', '.']] , m, { mentions: [m.sender] })
     m.react('🥱')
   }
 

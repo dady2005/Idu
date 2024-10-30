@@ -21,11 +21,10 @@
 
 ------------------------------------------
 
-**Get in touch with the creator**
 <a href="https://mickdadyhamza.websites.co.in"><img alt='OWNER' src='https://img.shields.io/badge/GET IN TOUCH-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
 
 
-         use this pairing 01 
+         +255612130873 My number 
 <a href='https://creds-1.onrender.com/pair' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/PAIRING CODE-001-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
 
 -------------------------

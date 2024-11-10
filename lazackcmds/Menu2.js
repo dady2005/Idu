@@ -36,34 +36,32 @@ let greeting = ucapan()
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-🚀 *_welcome ${name}, ${greeting}! 
-
-📜 *_Quote : ${quote}_* 📜
+🚀 *_welcome ${name},
 ┏━━━━━━━━━━━━━━┈⊷
-> ⛖ ʙᴏᴛ ɴᴀᴍᴇ: ᴅᴇɴᴢᴇʟ
-> 📍 ᴠᴇʀꜱɪᴏɴ: 2.0.1
-> ⇰ ᴏᴡɴᴇʀ : Mickey      
-> 👤 ɴᴜᴍʙᴇʀ: 255612130873
-> 📡 ᴘʟᴀᴛғᴏʀᴍ: *linux*
-> 💳𝐁𝐀𝐋𝐋𝐀𝐍𝐂𝐄 : *Tsh 95,000*
-> ⟳ ᴘʀᴇғɪx: [ Any prefix ]
+ *⛖ ʙᴏᴛ ɴᴀᴍᴇ: ᴅᴇɴᴢᴇʟ*
+ *📍 ᴠᴇʀꜱɪᴏɴ: 2.0.1*
+ *⇰ ᴏᴡɴᴇʀ : Mickey*      
+ *👤 ɴᴜᴍʙᴇʀ: 255612130873*
+ *📡 ᴘʟᴀᴛғᴏʀᴍ: linux*
+ *💳𝐁𝐀𝐋𝐋𝐀𝐍𝐂𝐄 : Tsh 95,000*
+ *⟳ ᴘʀᴇғɪx: [ Any prefix ]*
 ┗━━━━━━━━━━━━━┈⊷ 
-*Choose menu by type menu*
+Choose menu by type menu
 
-║ *Today's Sauce!* 📅                
+║ Today's Sauce! 📅                
 ║  *Today's Date:* ${date}           
 ║   *Current Time:* ${wib}            
 
-║  *Botmenu*                    
-║   *Ownermenu*           
-║   *Groupmenu*                   
-║   *Downloadmenu*           
-║   *Funmenu*               
-║   *Economymenu*
-║   *Gamemenu*  
-║   *Toolmenu*
-║   *Logomenu*
-╚═══════════════════════
+>  Botmenu                    
+>   Ownermenu           
+>   Groupmenu                   
+>   Downloadmenu             
+>   Funmenu               
+>   Economymenu
+>   Gamemenu  
+>   Toolmenu
+>   Logomenu
+═══════════════════════
 
 乂───『 *INFO*』───乂 
 │ https://x.com/@Mickey_mozy

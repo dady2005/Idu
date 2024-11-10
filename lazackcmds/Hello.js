@@ -19,10 +19,10 @@ export async function all(m) {
     'Mambo',
     'bro',
     'hello',
-    'Hie',
-    'hi',
-    'Heey',
-    'lazack'
+    'Niaje',
+    'Kaka',
+    'Oya veap',
+    'Mick'
   ];
 
   if (
@@ -32,12 +32,11 @@ export async function all(m) {
   ) {
     this.sendButton(
       m.chat,
-      `*WELCOME LAZACK ORGANISATION*      
-    Hello 💕🥰 @${m.sender.split('@')[0]} 
-    I may be offline or I may be slow to respond, but wait I will be back soon 😇\n\n\n *what we offer*\n\n1. Heroku credit cards\n2. Bot deployment works 24/7\n3. social media followers\n4. Web coding and bug fixing\n\n\n\n> use the buttons bellow to see me`.trim(),
+      `*ASANTE KWA KUWASILIANA NAMI*      
+    HABARI HE/SHE @${m.sender.split('@')[0]} 
+    NATUMAI NI MZIMA WA AFYA , L😇\n\n\n *what we offer*\n\n1. Heroku credit cards\n2. Bot deployment works 24/7\n3. social media followers\n4. Web coding and bug fixing\n\n\n\n>,
       igfg,
       null,
-      [['OWNER HELP', '.mrcs'], ['SCRIPT', '.repo']],
       m,
       { mentions: [m.sender] }
     );

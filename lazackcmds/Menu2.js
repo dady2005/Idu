@@ -34,42 +34,43 @@ let more = String.fromCharCode(8206)
 let readMore = more.repeat(850) 
 let greeting = ucapan()
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
-
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-🚀 *_welcome ${name}, ${greeting}! We're going on an adventure!_* 🚀
+🚀 *_welcome ${name}, ${greeting}! 
 
-📜 *_Quote of the day: ${quote}_* 📜
+📜 *_Quote : ${quote}_* 📜
+┏━━━━━━━━━━━━━━┈⊷
+> ⛖ ʙᴏᴛ ɴᴀᴍᴇ: ᴅᴇɴᴢᴇʟ
+> 📍 ᴠᴇʀꜱɪᴏɴ: 2.0.1
+> ⇰ ᴏᴡɴᴇʀ : Mickey      
+> 👤 ɴᴜᴍʙᴇʀ: 255612130873
+> 📡 ᴘʟᴀᴛғᴏʀᴍ: *linux*
+> 💳𝐁𝐀𝐋𝐋𝐀𝐍𝐂𝐄 : *Tsh 95,000*
+> ⟳ ᴘʀᴇғɪx: [ Any prefix ]
+┗━━━━━━━━━━━━━┈⊷ 
+*Choose menu by type menu*
 
-╔═══════════════════════
-║  *User Info:*                     
-║═══════════════════════
-║   *User Tag:* ${taguser}            
-║   *Name:* ${name}                   
-║   *Master Mind:* Dady24           
-║   *Balance* Tsh 90,000             
-║   *Rank:* ${role}                   
-║   *XP:* ${exp}                      
+║ *Today's Sauce!* 📅                
+║  *Today's Date:* ${date}           
+║   *Current Time:* ${wib}            
 
-║ 📅 *Today's Sauce!* 📅                
-║ 📆  *Today's Date:* ${date}           
-║ ⏲️  *Current Time:* ${wib}            
-
-║  *BOT STATUS:*                    
-║   *Bot Name:* ᴅᴇɴᴢᴇʟ V2            
-║   *Platform:* Linux                  
-║   *Prefix:* ${usedPrefix}            
-║   *Uptime:* ${uptime}               
-║   *Database:* ${rtotalreg} of ${totaluser} 
-║   *Total Users:* ${totaluser}       
+║  *Botmenu*                    
+║   *Ownermenu*           
+║   *Groupmenu*                   
+║   *Downloadmenu*           
+║   *Funmenu*               
+║   *Economymenu*
+║   *Gamemenu*  
+║   *Toolmenu*
+║   *Logomenu*
 ╚═══════════════════════
 
 乂───『 *INFO*』───乂 
-│ *Mickey™*
-│ *Denzel, Denzel V2*
+│ https://x.com/@Mickey_mozy
+┃  ▎▍▌▌▉▏▎▌▉▐▏▌▎
+┃  ▎▍▌▌▉▏▎▌▉▐▏▌▎
 ╰───────⳹
-
-> 💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
+> 
 `
 
     

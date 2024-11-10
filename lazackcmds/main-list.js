@@ -69,7 +69,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 > ➵ _${usedPrefix}groups_
 > ➵ _${usedPrefix}blocklist_
 > ➵ _${usedPrefix}listprem_
-   ⎪⌲    DENZEL BOT MENU LIST
+     ᴹⁱᶜᵏᵉʸ™ ⁱˢ ᵇᵉˢᵗ 
    ┗━━━━━━━━━━━━━━━⪼` // Your bot menu message here
       break
     case 'ownermenu':

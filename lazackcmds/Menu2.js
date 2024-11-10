@@ -83,7 +83,7 @@ Choose menu by type menu
 }
 handler.help = ['main']
 handler.tags = ['group']
-handler.command = ['menu2', 'help2'] 
+handler.command = ['menu', 'help'] 
 
 export default handler
 function clockString(ms) {

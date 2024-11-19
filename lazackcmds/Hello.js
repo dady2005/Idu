@@ -1,49 +1,29 @@
-const userLastMessageMap = new Map();
-
 export async function all(m) {
-  const ONE_DAY = 24 * 60 * 60 * 1000; 
-
-  const currentTime = Date.now();
-  const userId = m.sender;
-
-  if (userLastMessageMap.has(userId)) {
-    const lastMessageTime = userLastMessageMap.get(userId);
-    if (currentTime - lastMessageTime < ONE_DAY) {
-      return;
-    }
-  }
-
-  const greetings = [
-    'Hello',
-    'Hi',
-    'Mambo',
-    'bro',
-    'hello',
-    'Niaje',
-    'Kaka',
-    'Oya veap',
-    'Mick'
-  ];
-
+  // when someone sends you hello message
   if (
-    greetings.includes(m.text) &&
+    (m.mtype === 'hellomessage' ||
+      m.text.startsWith('Hello') ||
+      m.text.startsWith('Hi') ||
+      m.text.startsWith('Mambo') ||
+      m.text.startsWith('Oy') ||
+      m.text.startsWith('Niaje') ||
+      m.text.startsWith('kaka')) &&
     !m.isBaileys &&
     !m.isGroup
-  ) {
-    this.sendButton(
+ /* ) {
+    this.sendMessage(
       m.chat,
-      `*ASANTE KWA KUWASILIANA NAMI*      
-    HABARI HE/SHE @${m.sender.split('@')[0]} 
-    NATUMAI NI MZIMA WA AFYA , L😇\n\n\n *what we offer*\n\n1. Heroku credit cards\n2. Bot deployment works 24/7\n3. social media followers\n4. Web coding and bug fixing\n\n\n\n>,
-      igfg,
-      null,
-      m,
-      { mentions: [m.sender] }
-    );
-    m.react('💕');
-
-    userLastMessageMap.set(userId, currentTime);
+      {
+        text: `Hello @${m.sender.split('@')[0]}\nyou can rent the bot to join a group\n\n_For more info you can DM the owner_\n*Type* \`\`\`.owner\`\`\` *to contact the owner*`.trim(),
+      },
+      { quoted: m }*/
+    ) {
+    this.sendButton(m.chat, `*WELCOME ITS ME JUST REPLYING*      
+    morning or evening @${m.sender.split('@')[0]} 
+    i may be offline or i may be slow to respond you but wait i will be back soon 😇
+  `.trim(), igfg, null, [['O m, { mentions: [m.sender] })
+    m.react('🤫')
   }
 
-  return !0;
-}
+  return !0
+      }

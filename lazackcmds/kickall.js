@@ -2,7 +2,7 @@ const config = require('../config')
 const { cmd, commands } = require('../command')
   
 cmd({
-    pattern: "kickall",
+    command: "kickall",
     desc: "Kicks all non-admin members from the group.",
     react: "👏",
     category: "group",

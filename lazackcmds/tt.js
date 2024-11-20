@@ -46,7 +46,7 @@ let handler = async (message, { conn, text, args, usedPrefix, command }) => {
       const audioData = await tts(chunk, "thomas_shelby");
       const audioMessage = {
         audio: audioData,
-        mimetype: "audio/mp3", // Correct MIME type for MP3
+        mimetype: "audio/opus", // Correct MIME type for MP3
         ptt: true // Set to true for voice message
       };
       await conn.sendMessage(message.chat, audioMessage, { quoted: message });

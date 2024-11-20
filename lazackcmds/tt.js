@@ -1,72 +1,66 @@
-const googleTTS = require('google-tts-api');
-const {zokou} = require("../framework/zokou");
+import axios from "axios";
 
+const model = ["bella", "echilling", "adam", "prabowo", "thomas_shelby", "michi_jkt48", "jokowi", "megawati", "nokotan", "boboiboy", "yanzgpt"];
 
-zokou( {
-  nomCom : "dit",
- categorie : "tts",
-  reaction : "👄" },
-      async(dest,zk, commandeOptions)=> {
- 
-const {ms,arg,repondre} = commandeOptions;
-      if (!arg[0]) {repondre("Insert a word");return} ;
- const mots = arg.join(" ")
+const tts = (text, voiceModel) => {
+  return new Promise(async (resolve, reject) => {
+    if (!model.includes(voiceModel)) {
+      return reject(new Error("Invalid voice model."));
+    }
+    try {
+      const response = await axios.get("https://api.yanzbotz.live/api/tts/voice-over", {
+        params: {
+          query: text,
+          model: voiceModel,
+          apiKey: "PrincelovesYanz"
+        },
+        responseType: "arraybuffer"
+      });
+      resolve(response.data);
+    } catch (error) {
+      console.error("Error details:", error.response ? error.response.data : error.message);
+      reject(new Error("Failed to generate voice-over. Check the console for details."));
+    }
+  });
+};
 
-const url = googleTTS.getAudioUrl( mots, {
-  lang: 'fr',
-  slow: false,
-  host: 'https://translate.google.com',
-});
-console.log(url); 
-             zk.sendMessage(dest, { audio: { url:url},mimetype:'audio/mp4' }, { quoted: ms,ptt: true });
+let handler = async (message, { conn, text, args, usedPrefix, command }) => {
+  if (!text && !(message.quoted && message.quoted.text)) {
+    return message.reply("Reply with a message or type .tts hello mr lazack device");
+  }
+  
+  if (!text && message.quoted && message.quoted.text) {
+    text = message.quoted.text;
+  }
+  
+  const chunks = [];
+  for (let i = 0; i < text.length; i += 500) {
+    const chunk = text.slice(i, i + 500);
+    chunks.push(chunk);
+  }
+  
+  message.react("⏳");
+  
+  try {
+    for (const chunk of chunks) {
+      const audioData = await tts(chunk, "thomas_shelby");
+      const audioMessage = {
+        audio: audioData,
+        mimetype: "audio/mp3", // Correct MIME type for MP3
+        ptt: true // Set to true for voice message
+      };
+      await conn.sendMessage(message.chat, audioMessage, { quoted: message });
+    }
+  } catch (error) {
+    message.reply("An error occurred while generating the voice-over. Check the console for details.");
+    console.error("Detailed error:", error);
+  }
+  
+  message.react("✅");
+};
 
+handler.help = ["tooltts"];
+handler.tags = ["tools"];
+handler.command = ["speak", "tt"];
 
-        
-}
-) ;
-
-zokou( {
-  nomCom : "itta",
- categorie : "tts",
-  reaction : "👄" },
-      async(dest,zk, commandeOptions)=> {
- 
-const {ms,arg,repondre} = commandeOptions;
-      if (!arg[0]) {repondre("Insert a word");return} ;
- const mots = arg.join(" ")
-
-const url = googleTTS.getAudioUrl( mots, {
-  lang: 'ja',
-  slow: false,
-  host: 'https://translate.google.com',
-});
-console.log(url); 
-             zk.sendMessage(dest, { audio: { url:url},mimetype:'audio/mp4' }, { quoted: ms,ptt: true });
-
-
-        
-}
-) ;
-
-zokou( {
-  nomCom : "say",
- categorie : "tts",
-  reaction : "👄" },
-      async(dest,zk, commandeOptions)=> {
- 
-const {ms,arg,repondre} = commandeOptions;
-      if (!arg[0]) {repondre("Insert a word");return} ;
- const mots = arg.join(" ")
-
-const url = googleTTS.getAudioUrl( mots, {
-  lang: 'en',
-  slow: false,
-  host: 'https://translate.google.com',
-});
-console.log(url); 
-             zk.sendMessage(dest, { audio: { url:url},mimetype:'audio/mp4' }, { quoted: ms,ptt: true });
-
-
-        
-}
-) ;
+export default handler;

@@ -2,26 +2,28 @@ import axios from "axios";
 
 const model = ["bella", "echilling", "adam", "prabowo", "thomas_shelby", "michi_jkt48", "jokowi", "megawati", "nokotan", "boboiboy", "yanzgpt"];
 
-const tts = (text, voiceModel) => {
-  return new Promise(async (resolve, reject) => {
-    if (!model.includes(voiceModel)) {
-      return reject(new Error("Invalid voice model."));
-    }
-    try {
-      const response = await axios.get("https://api.yanzbotz.live/api/tts/voice-over", {
-        params: {
-          query: text,
-          model: voiceModel,
-          apiKey: "PrincelovesYanz"
-        },
-        responseType: "arraybuffer"
-      });
-      resolve(response.data);
-    } catch (error) {
-      console.error("Error details:", error.response ? error.response.data : error.message);
-      reject(new Error("Failed to generate voice-over. Check the console for details."));
-    }
-  });
+const tts = async (text, voiceModel) => {
+  if (!model.includes(voiceModel)) {
+    throw new Error("Invalid voice model.");
+  }
+  
+  try {
+    const response = await axios.post("https://elevenlabs.io/app/speech-synthesis/text-to-speech", {
+      text: text,
+      voice: voiceModel
+    }, {
+      headers: {
+        'xi-api-key': 'sk_231378f2f4b1c1c130f28323cbebf1de9470141d65069952', // Replace with your Eleven Labs API key
+        'Content-Type': 'application/json'
+      },
+      responseType: "arraybuffer"
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error("Error details:", error.response ? error.response.data : error.message);
+    throw new Error("Failed to generate voice-over. Check the console for details.");
+  }
 };
 
 let handler = async (message, { conn, text, args, usedPrefix, command }) => {

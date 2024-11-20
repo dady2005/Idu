@@ -45,8 +45,8 @@ let handler = async (message, { conn, text, args, usedPrefix, command }) => {
     for (const chunk of chunks) {
       const audioData = await tts(chunk, "thomas_shelby");
       const audioMessage = {
-        audio: audioData,
-        mimetype: "audio/opus", // Correct MIME type for MP3
+        audio: Buffer.from(audioData), // Convert to Buffer
+        mimetype: "audio/mp3", // Correct MIME type for MP3
         ptt: true // Set to true for voice message
       };
       await conn.sendMessage(message.chat, audioMessage, { quoted: message });

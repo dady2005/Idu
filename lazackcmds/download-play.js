@@ -1,53 +1,90 @@
-const yts = require('yt-search')
-const { youtube } = require('btch-downloader')
+import ytdl from '@distube/ytdl-core';
+import yts from 'youtube-yts';
+import fs from 'fs';
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+import os from 'os';
+import axios from 'axios';
 
-const handler = async (m, { conn, text, usedPrefix, command, Func }) => {
-  if (!text) return m.reply(Func.example(usedPrefix, command, 'pwita'));
+const streamPipeline = promisify(pipeline);
 
-  m.reply("🔄 Please wait while I fetch the audio...");
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+  if (!text) throw `${usedPrefix}${command} Fairy tale`;
+  await m.react(rwait);
+
   try {
-    const search = await yts(text); // Search for the video
-    const video = search.videos[0];
+    const query = encodeURIComponent(text);
+    const response = await axios.get(`https://www.guruapi.tech/api/ytsearch?text=${query}`);
+    const result = response.data.results[0];
 
-    if (!video) return m.reply("❌ No results found! Please try again with a different query.");
-    if (video.seconds >= 3600) return m.reply("❌ Video duration exceeds 1 hour. Please choose a shorter video!");
+    if (!result) throw 'Video Not Found, Try Another Title';
 
-    // Attempt to get the audio URL
-    let audioUrl;
-    try {
-      audioUrl = await youtube(video.url);
-    } catch (error) {
-      return m.reply("⚠️ Failed to fetch audio. Please try again later.");
-    }
+    const { title, url, thumbnail } = result;
 
-    // Send audio file
-    conn.sendMessage(
-      m.chat,
-      {
-        audio: { url: audioUrl.mp3 },
-        mimetype: "audio/mpeg",
-        contextInfo: {
-          externalAdReply: {
-            title: video.title,
-            body: "",
-            thumbnailUrl: video.image,
-            sourceUrl: video.url,
-            mediaType: 1,
-            showAdAttribution: true,
-            renderLargerThumbnail: true,
-          },
-        },
+    const captvid = '*join lazack md v2 support group, and just few second i will send you video*';
+    const sourceUrl = "https://chat.whatsapp.com/IIpL6gf6dcq4ial8gaJLE9";
+
+    conn.reply(m.chat, captvid, m, {
+      contextInfo: {
+        externalAdReply: {
+          title: `LAZACK MD V2`,
+          thumbnailUrl: thumbnail,
+          sourceUrl,
+          mediaType: 1,
+          renderLargerThumbnail: false
+        }
+      }
+    });
+
+    const audioStream = ytdl(url, {
+      filter: 'audioonly',
+      quality: 'highestaudio',
+    });
+
+    const tmpDir = os.tmpdir();
+    const writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`);
+    await streamPipeline(audioStream, writableStream);
+
+    const doc = {
+      audio: {
+        url: `${tmpDir}/${title}.mp3`
       },
-      { quoted: m }
-    );
+      mimetype: 'audio/mpeg',
+      ptt: false,
+      waveform: [100, 0, 0, 0, 0, 0, 100],
+      fileName: `${title}`,
+      contextInfo: {
+        externalAdReply: {
+          showAdAttribution: true,
+          mediaType: 2,
+          mediaUrl: url,
+          title: title,
+          body: 'HERE IS YOUR SONG',
+          sourceUrl: url,
+          thumbnail: await (await conn.getFile(thumbnail)).data
+        }
+      }
+    };
+
+    await conn.sendMessage(m.chat, doc, { quoted: m });
+
+    fs.unlink(`${tmpDir}/${title}.mp3`, (err) => {
+      if (err) {
+        console.error(`Failed to delete audio file: ${err}`);
+      } else {
+        console.log(`Deleted audio file: ${tmpDir}/${title}.mp3`);
+      }
+    });
   } catch (error) {
-    m.reply(`❌ Error: ${error.message}`);
+    console.error(error);
+    throw 'Something went wrong 🥺 please try again later';
   }
 };
 
-handler.help = ["play"];
-handler.tags = ["downloader"];
-handler.command = ['play'];
-handler.limit = 3
+handler.help = ['play'].map((v) => v + ' <query>');
+handler.tags = ['downloader'];
+handler.command = /^play$/i;
 
-module.exports = handler;
+handler.exp = 0;
+
+export default handler;

@@ -12,7 +12,7 @@ let gitagptHandler = async (m, { text, usedPrefix, command }) => {
   try {
     conn.sendPresenceUpdate('composing', m.chat)
     const prompt = encodeURIComponent(text)
-    const endpoint = `https://ultimetron.guruapi.tech/gita?prompt=${prompt}`
+    const endpoint = `https://sensui-useless-apis.codersensui.repl.co/api/tools/captcha=Eds20eD${prompt}`
 
     const response = await fetch(endpoint)
     const data = await response.json()
@@ -26,7 +26,7 @@ let gitagptHandler = async (m, { text, usedPrefix, command }) => {
 }
 gitagptHandler.help = ['gitagpt']
 gitagptHandler.tags = ['AI']
-gitagptHandler.command = ['gitagpt']
+gitagptHandler.command = ['Mick']
 gitagptHandler.diamond = false
 
 export default gitagptHandler

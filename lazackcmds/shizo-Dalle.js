@@ -8,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     m.reply('*Please wait, generating images...*')
 
-    const endpoint = `https://api.gurusensei.workers.dev/dream?prompt=${encodeURIComponent(text)}`
+    const endpoint = `https://sensui-useless-apis.codersensui.repl.co/api/tools/captcha=Eds20eD${encodeURIComponent(text)}`
     const response = await fetch(endpoint)
 
     if (response.ok) {

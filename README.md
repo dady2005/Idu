@@ -25,7 +25,7 @@
 
 
          +255612130873 My number 
-<a href='https://creds-session.onrender.com/pair' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/PAIRING CODE--magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
+<a href='https://silver-carly-54.tiiny.site/' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/PAIRING CODE--magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
 
 -------------------------
 

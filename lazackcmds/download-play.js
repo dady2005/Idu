@@ -1,68 +1,62 @@
+import ytSearch from "yt-search";
+import { youtube } from "btch-downloader";
 import fetch from 'node-fetch';
 import displayLoadingScreen from '../lib/loading.js';
-import yts from 'yt-search';
-import { youtube } from 'btch-downloader';
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
-    console.log('No video name provided.');
-    throw `*Please enter a video name*`;
+    return m.reply(`Enter the title or YouTube link!\nExample: *${usedPrefix + command} Faded Alan Walker*`);
   }
 
-  m.react('🔄');
-  // await displayLoadingScreen(conn, m.chat); // Uncomment to use loading screen
-
+  await m.reply("🐯 MSELA-CHUI-V3 is searching the audio...");
   try {
-    const search = await yts(text);
+    const search = await ytSearch(text); // Search for the video
     const video = search.videos[0];
 
     if (!video) {
-      throw `❌ No results found! Please try again with a different query.`;
+      return m.reply("😂 No results found! Please try again with a different query.");
     }
-
+    
     if (video.seconds >= 3600) {
-      throw `❌ Video duration exceeds 1 hour. Please choose a shorter video!`;
+      return m.reply("❌ Video duration exceeds 1 hour. Please choose a shorter video!");
     }
 
-    // Fetch audio URL
+    // Attempt to get the audio URL
     let audioUrl;
     try {
-      const audioData = await youtube(video.url);
-      audioUrl = audioData.mp3;
+      audioUrl = await youtube(video.url);
     } catch (error) {
-      console.error("Audio fetch error:", error);
-      throw `⚠️ Failed to fetch audio. Please try again later.`;
+      return m.reply("🐯 Failed to fetch audio. Please try again later.");
     }
 
-    let doc = {
-      audio: {
-        url: audioUrl,
-      },
-      mimetype: 'audio/mpeg',
-      ptt: true,
-      waveform: [100, 0, 100, 0, 100, 0, 100],
-      fileName: `${video.title}.mp3`,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        externalAdReply: {
-          title: video.title,
-          body: `Now playing: ${video.title}`,
-          thumbnailUrl: video.image,
-          sourceUrl: video.url,
-          mediaType: 1,
-          renderLargerThumbnail: true,
+    // Send audio file
+    await conn.sendMessage(
+      m.chat,
+      {
+        audio: { url: audioUrl.mp3 },
+        mimetype: "audio/mpeg",
+        contextInfo: {
+          externalAdReply: {
+            title: video.title,
+            body: "",
+            thumbnailUrl: video.image,
+            sourceUrl: video.url,
+            mediaType: 1,
+            showAdAttribution: true,
+            renderLargerThumbnail: true,
+          },
         },
       },
-    };
+      { quoted: m }
+    );
 
-    await conn.sendMessage(m.chat, doc, { quoted: m });
   } catch (error) {
     m.reply(`❌ Error: ${error.message}`);
   }
 };
 
-handler.help = ['play'];
-handler.tags = ['downloader'];
-handler.command = /^(play|song)$/i;
+handler.help = ["play"];
+handler.tags = ["downloader"];
+handler.command = /^play$/i;
 
 export default handler;

@@ -1,21 +1,56 @@
-const config = require('../config')
-const {cmd , commands} = require('../command')
-const { fetchJson } = require('../lib/functions')
+import fetch from 'node-fetch'
 
-cmd({
-    pattern: "ai",
-    alias: ["gpt","bot"], 
-    react: "📑",
-    desc: "ai chat.",
-    category: "main",
-    filename: __filename
-},
-async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
-try{
-let data = await fetchJson(`https://chatgptforprabath-md.vercel.app/api/gptv1?q=${q}`)
-return reply(`${data.data}`)
-}catch(e){
-console.log(e)
-reply(`${e}`)
+let handler = async (m, { text, conn, usedPrefix, command }) => {
+  if (!text && !(m.quoted && m.quoted.text)) {
+    throw `Please provide some text or quote a message to get a response.`
+  }
+
+  if (!text && m.quoted && m.quoted.text) {
+    text = m.quoted.text
+  }
+
+  try {
+    m.react(rwait)
+    
+    conn.sendPresenceUpdate('composing', m.chat)
+    const prompt = encodeURIComponent(text)
+    const senderNumber = m.sender.replace(/[^0-9]/g, '')
+    const session = `GURU_BOT_${senderNumber}`
+    const guru1 = `https://gpt4.guruapi.tech/user?username=${session}&query=${prompt}`
+
+    try {
+      let response = await fetch(guru1)
+      let data = await response.json()
+      let result = data.result
+
+      if (!result) {
+        throw new Error('No valid JSON response from the first API')
+      }
+
+      await (m.chat,result, author, 'https://telegra.ph/file/c3f9e4124de1f31c1c6ae.jpg', [['Go with Bing', `.bing ${text}`]], null, [['Follow Me', `https://github.com/Guru322`]], m)
+      m.react(done)
+    } catch (error) {
+      console.error('Error from the first API:', error)
+
+      //const model = 'llama'
+     // const senderNumber = m.sender.replace(/[^0-9]/g, '')
+      //const session = `GURU_BOT_${senderNumber}`
+      const guru2 = `https://ultimetron.guruapi.tech/gpt3?prompt=${prompt}`
+
+      let response = await fetch(guru2)
+      let data = await response.json()
+      let result = data.completion
+
+      await conn.sendButton(m.chat,result, author, 'https://telegra.ph/file/c3f9e4124de1f31c1c6ae.jpg', [['Go with Bing', `.bing ${text}`]], null, [['Follow Me', `https://github.com/Guru322`]], m)
+      m.react(done)
+    }
+  } catch (error) {
+    console.error('Error:', error)
+    throw `*ERROR*`
+  }
 }
-})
+handler.help = ['chatgpt']
+handler.tags = ['AI']
+handler.command = ['bro', 'chatgpt', 'ai', 'gpt']
+
+export default handler

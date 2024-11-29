@@ -10,7 +10,7 @@ let api = await fetch(`https://spotifyapi.caliphdev.com/api/download/track?url=$
 let json = await api.json();
 let { url } = json[0];
 
-let api2 = await fetch(`https://apis-starlights-team.koyeb.app/starlight/soundcloud?url=${url}`);
+let api2 = await fetch(`https://spotifyapi.caliphdev.com/api/download/track?url=${encodeURIComponent(trackData.url)=${url}`);
 let json2 = await api2.json();
         
 let { link: dl_url, quality, image } = json2;

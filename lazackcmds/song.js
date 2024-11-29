@@ -6,7 +6,7 @@ if (!text) return conn.reply(m.chat, `🐯 Enter the name of the song *Soundclou
 
 await m.react('🕒');
 try {
-let api = await fetch(`https://apis-starlights-team.koyeb.app/starlight/soundcloud-search?text=${encodeURIComponent(text)}`);
+let api = await fetch(`https://spotifyapi.caliphdev.com/api/download/track?url=${encodeURIComponent(trackData.url)=${encodeURIComponent(text)}`);
 let json = await api.json();
 let { url } = json[0];
 

@@ -33,7 +33,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
           externalAdReply: {
             showAdAttribution: true,
             title: trackData.title,
-            body: "LAZACK DEVICE SEARCH & DOWNLOAD",
+            body: "MICKEY™ SEARCH & DOWNLOAD",
             thumbnailUrl: trackData.thumbnail,
             mediaType: 1,
             renderLargerThumbnail: true,

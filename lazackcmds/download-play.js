@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     return m.reply(`Enter the Spotify track URL or title!\nExample: *${usedPrefix + command} Faded*`);
   }
 
-  await m.reply("🔄 🎧 Hang tight! Lazack Device bot is fetching your track direct from Spotify! 🤩...");
+  await m.reply(" Thanks for using Mickey™ you track is sending directly! 🤩...");
 
   try {
     // Spotify track search
@@ -18,7 +18,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     // Send track info message
-    const trackInfo = `_🎵 LAZACK DEVICE TRACK 🎵_
+    const trackInfo = `_ 👉MICKEY™ BOTS DOWNLOADER👈_
 
 - *Title*: ${trackData.title}
 - *Artist*: ${trackData.artist}

@@ -1,48 +1,41 @@
-import ytSearch from "yt-search";
-import { youtube } from "btch-downloader";
-import fetch from 'node-fetch';
-import displayLoadingScreen from '../lib/loading.js';
+import axios from "axios";
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
-    return m.reply(`Enter the title or YouTube link!\nExample: *${usedPrefix + command} Faded Alan Walker*`);
+    return m.reply(`Enter the Spotify track URL or title!\nExample: *${usedPrefix + command} Faded*`);
   }
 
-  await m.reply("🐯 MSELA-CHUI-V3 is searching the audio...");
+  await m.reply("🔄 🎧 Hang tight! Lazack Device bot is fetching your track direct from Spotify! 🤩...");
+
   try {
-    const search = await ytSearch(text); // Search for the video
-    const video = search.videos[0];
+    // Spotify track search
+    const searchApiUrl = `https://spotifyapi.caliphdev.com/api/search/tracks?q=${encodeURIComponent(text)}`;
+    const searchData = (await axios.get(searchApiUrl)).data;
 
-    if (!video) {
-      return m.reply("😂 No results found! Please try again with a different query.");
-    }
-    
-    if (video.seconds >= 3600) {
-      return m.reply("❌ Video duration exceeds 1 hour. Please choose a shorter video!");
+    const trackData = searchData[0];
+    if (!trackData) {
+      return m.reply("❌ No Spotify results found. Please try again with a valid URL or query.");
     }
 
-    // Attempt to get the audio URL
-    let audioUrl;
-    try {
-      audioUrl = await youtube(video.url);
-    } catch (error) {
-      return m.reply("🐯 Failed to fetch audio. Please try again later.");
-    }
+    // Send track info message
+    const trackInfo = `_🎵 LAZACK DEVICE TRACK 🎵_
 
-    // Send audio file
+- *Title*: ${trackData.title}
+- *Artist*: ${trackData.artist}
+- *URL*: ${trackData.url}`;
+
     await conn.sendMessage(
       m.chat,
       {
-        audio: { url: audioUrl.mp3 },
-        mimetype: "audio/mpeg",
+        text: trackInfo,
         contextInfo: {
+          mentionedJid: [m.sender],
           externalAdReply: {
-            title: video.title,
-            body: "",
-            thumbnailUrl: video.image,
-            sourceUrl: video.url,
-            mediaType: 1,
             showAdAttribution: true,
+            title: trackData.title,
+            body: "LAZACK DEVICE SEARCH & DOWNLOAD",
+            thumbnailUrl: trackData.thumbnail,
+            mediaType: 1,
             renderLargerThumbnail: true,
           },
         },
@@ -50,8 +43,26 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       { quoted: m }
     );
 
+    // Spotify download API
+    const downloadApiUrl = `https://spotifyapi.caliphdev.com/api/download/track?url=${encodeURIComponent(trackData.url)}`;
+    const response = await axios({
+      url: downloadApiUrl,
+      method: "GET",
+      responseType: "stream",
+    });
+
+    if (response.headers["content-type"] === "audio/mpeg") {
+      await conn.sendMessage(
+        m.chat,
+        { audio: { stream: response.data }, mimetype: "audio/mpeg" },
+        { quoted: m }
+      );
+    } else {
+      m.reply("⚠ Failed to fetch Spotify audio. Please try again later.");
+    }
   } catch (error) {
-    m.reply(`❌ Error: ${error.message}`);
+    m.reply(`❌ Lazack Device encountered an error: ${error.message}`);
+    console.error(error);
   }
 };
 

@@ -31,11 +31,12 @@ let handler = async (m, { conn, args }) => {
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch pairing code. ${response.statusText}`);
+      throw new Error(`Failed to fetch pairing code. Status: ${response.status} - ${response.statusText}`);
     }
 
     const result = await response.json();
 
+    // Check if the response contains the pairing code or an error
     if (result.code) {
       const pairingCode = result.code;
       const message = `

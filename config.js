@@ -23,8 +23,8 @@ for (let i = 0; i < ownerlist.length; i += 2) {
 
 //global.pairingNumber = "" //put your bot number here
 
-global.mods = ['255734980103', '255758868502']
-global.prems = ['255612130873', '25515944741', '255711765335']
+global.mods = ['255612130873', '255615944741']
+global.prems = ['255612130873', '255615944741']
 global.allowed = ['255612130873', '255615944741']
 global.keysZens = ['c2459db922', '37CC845916', '6fb0eff124']
 global.keysxxx = keysZens[Math.floor(keysZens.length * Math.random())]
@@ -79,7 +79,7 @@ global.author = 'Mickey'
 global.menuvid = ''
 global.igfg = ''
 global.dygp = ''
-global.fgsc = 'https://github.com/Dady24/Denzel-V2'
+global.fgsc = 'https://github.com/Mickeymozy/Denzel-V2'
 global.fgyt = 'https://www.youtube.com/@MickdadyHamzaMickey_mozy'
 global.fgpyp = 'https://www.youtube.com/@MickdadyHamzaMickey_mozy'
 global.fglog = ''

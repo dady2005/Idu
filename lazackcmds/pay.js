@@ -3,7 +3,7 @@ import { join } from 'path'
 import axios from 'axios'
 
 let handler = async function (m, { conn, __dirname }) {
-  const githubRepoURL = 'https://github.com/SilvaTechB/silva-md-bot'
+  const githubRepoURL = 'https://github.com/Mickeymozy/Denzel-V2/'
 
   try {
     const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/)
@@ -15,12 +15,12 @@ let handler = async function (m, { conn, __dirname }) {
 
       // Format the repository information with emojis
       const formattedInfo = `
-      🍑🍆𝐒𝐈𝐋𝐕𝐀 𝐌𝐃 𝐁𝐎𝐓💦☣
-SILVA WANTS MONEY FROM YOU
+      MICKEY INFORMATION TECHNOLOGY 💦☣
+THANKS FOR SUPPORT 
 
-MAKE YOUR PAYMENT EXCLUSIVELY FOR SILVA MD BOT PROJECT
+MAKE PAYMENT THROUGH ACCOUNT NUMBER 0615944741
 
-\`\`\`𝐒𝐈𝐋𝐕𝐀 𝐌𝐃 𝐁𝐎𝐓 PAYMENT\`\`\`
+\`\`\`NAME MICKDADI HAMZA\`\`\`
 `.trim()
 
       // Send the formatted information as a message
@@ -28,7 +28,7 @@ MAKE YOUR PAYMENT EXCLUSIVELY FOR SILVA MD BOT PROJECT
         m.chat,
         {
           requestPaymentMessage: {
-            currencyCodeIso4217: 'KSH',
+            currencyCodeIso4217: 'TSH',
             amount1000: 2500,
             requestFrom: m.sender,
             noteMessage: {

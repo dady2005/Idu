@@ -5,7 +5,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     return m.reply(`Enter the Spotify track or playlist title!\nExample: *${usedPrefix + command} Faded*`);
   }
 
- await m.reply("🔄 🎧 bot is fetching your playlist from Spotify! 🤩...");
+ await m.reply("🔄 Mickey  is fetching your playlist from Spotify! 🤩...");
 
   try {
     // Spotify search API
@@ -35,7 +35,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
           externalAdReply: {
             showAdAttribution: true,
             title: "Advance Spotify Playlist",
-            body: "LAZACK SPOTIFY SEARCH",
+            body: "DENZEL SPOTIFY SEARCH",
             thumbnailUrl: "https://i.imgur.com/9ZgmMuf.mp4", // Example thumbnail
             mediaType: 1,
             renderLargerThumbnail: true,
@@ -52,7 +52,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ["sps"];
 handler.tags = ["spotify"];
-handler.command = ['sps'];
+handler.command = ['spotify'];
 handler.limit = 3
 
 module.exports = handler;

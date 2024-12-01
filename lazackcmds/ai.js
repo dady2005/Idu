@@ -25,8 +25,6 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
       if (!result) {
         throw new Error('No valid JSON response from the first API')
       }
-
-      await conn.sendButton
       m.react(done)
     } catch (error) {
       console.error('Error from the first API:', error)
@@ -40,7 +38,6 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
       let data = await response.json()
       let result = data.completion
 
-      await conn.sendButton
       m.react(done)
     }
   } catch (error) {

@@ -22,6 +22,6 @@ return conn.relayMessage(m.chat, msg.message, {})
 }
 handler.help = ['repo']
 handler.tags = ['info']
-handler.command = ['sc', 'repo']
+handler.command = ['scout', 'boy']
 
 module.exports = handler

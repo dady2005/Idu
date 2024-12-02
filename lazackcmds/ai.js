@@ -15,7 +15,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
     conn.sendPresenceUpdate('composing', m.chat)
     const prompt = encodeURIComponent(text)
 
-    const guru1 = `https://api.gurusensei.workers.dev/llama?prompt=${prompt}`
+    const guru1 = `https://chatgptforprabath-md.vercel.app/api/gptv1?q=${q}}`
 
     try {
       let response = await fetch(guru1)

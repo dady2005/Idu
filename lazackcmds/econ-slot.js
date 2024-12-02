@@ -44,17 +44,11 @@ ${usedPrefix + command} 500*`.trim()
     c++
     if (c == emojis.length) c = 0
   }
-  let end
-  if (a == b && b == c) {
-    end = `🎊 *Jackpot!* You won ${amount + amount} gold`
-    users.credit += amount + amount
-    // } else if (a == b || a == c || b == c) {
-    //     end = `You lost  *₹${amount}*\n*But you almost made it keep trying*`
-    //     users.credit -= amount
-  } else {
-    end = `      You lost ${amount} gold`
-    users.credit -= amount
-  }
+
+  // Always win
+  let end = `🎊 *Jackpot!* You won ${amount + amount} gold`
+  users.credit += amount + amount
+
   users.lastslot = new Date() * 1
   return await m.reply(
     `
@@ -86,4 +80,4 @@ function msToTime(duration) {
   seconds = seconds < 10 ? '0' + seconds : seconds
 
   return seconds + ' seconds'
-}
+      }

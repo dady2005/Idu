@@ -38,201 +38,20 @@ let quote = quotes[Math.floor(Math.random() * quotes.length)];
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
 乂───『 *INFO*』───乂 
-│ *Simple menu*
-│ *_TRY NOT TO LAUGH_*
-╰───────⳹
-╭───────⳹
-│ *1.* Bot Menu
-│ *2.* Owner Menu
-│ *3.* Group Menu
-│ *4.* Fun Menu
-│ *5.* Reaction Menu
-│ *6.* Downloader Menu
-│ *7.* Game Menu
-│ *8.* Logo Menu
-│ *9.* Sticker Menu
-│ *10.* Audio Menu
-│ *11.* News Menu
-│ *12.* Economy Menu
-│ *13.* Anime Menu
-│ *14.* NSFW Menu
-│ *15.* Tools Menu
-│ *16.* AI Menu
-│ *17.* Religion Menu
-│ *18.* Plugin Menu
-╰───────⳹
+│ OH HI  @${m.sender.split('@')[0]} 🖐️
+I am automatic systeam(whatsapp bot) that can help to do something. search and get data/information only through whatsapp only,
 
- *ᴀɪ* 
- .ᴀɪ
- .ʙᴜɢ
- .ʀᴇᴘᴏʀᴛ
- .ɢᴘᴛ
- .ᴅᴀʟʟᴇ
- .ʀᴇᴍɪɴɪ
- .ɢᴇᴍɪɴɪ
+    
+     乂───『 *DENZEL BOT*』───乂 
+> Library : MICKEY INFO TECH
+> Version : 2.9.0
+> website : https://mickdadyhamza.websites.co.in/update/welcome-to-mickdady-hamza/2755144
+> source : https://github.com/Mickeymozy/Denzel-V2
 
- *ᴛᴏᴏl* 
- .ᴄᴀʟᴄᴜʟᴀᴛᴏʀ
- .ᴛᴇᴍᴘᴍᴀɪʟ
- .ᴄʜᴇᴄᴋᴍᴀɪʟ
- .ᴛʀᴛ
- .ᴛᴛꜱ
-
-  *ɢʀᴏᴜᴘ* 
- .ʟɪɴᴋɢʀᴏᴜᴘ
- .ꜱᴇᴛᴘᴘɢᴄ
- .ꜱᴇᴛɴᴀᴍᴇ
- .ꜱᴇᴛᴅᴇꜱᴄ
- .ɢʀᴏᴜᴘ
- .ɢᴄꜱᴇᴛᴛɪɴɢ
- .ᴡᴇʟᴄᴏᴍᴇ
- .ᴀᴅᴅ
- .ᴋɪᴄᴋ
- .ʜɪᴅᴇᴛᴀɢ
- .ᴛᴀɢᴀʟʟ
- .ᴀɴᴛɪʟɪɴᴋ
- .ᴀɴᴛɪᴛᴏxɪᴄ
- .ᴘʀᴏᴍᴏᴛᴇ
- .ᴅᴇᴍᴏᴛᴇ
- .ɢᴇꜰʙɪᴏ
-
- *ᴅᴏᴡɴʟᴏᴀᴅ* 
-  .ᴀᴘᴋ
- .ꜰᴀᴄᴇʙᴏᴏᴋ
- .ᴍᴇᴅɪᴀꜰɪʀᴇ
- .ᴘɪɴᴛᴇʀᴇꜱᴛᴅʟ
- .ɢᴜᴛᴄʟᴏɴᴇ
- .ɢᴅʀɪᴠᴇ
- .ɪɴꜱʀᴀ
- .ʏᴛᴍᴘ3
- .ʏᴛᴍᴘ4
- .ᴘʟᴀʏ
- .ꜱᴏɴɢ
- .ᴠɪᴅᴇᴏ
- .ʏᴛᴍᴘ3ᴅᴏᴄ
- .ʏᴛᴍᴘ4ᴅᴏᴄ
- .ᴛɪᴋᴛᴏᴋ
-
- *ꜱᴇᴀʀᴄʜ* 
- .ᴘʟᴀʏ
- .ʏᴛꜱ
- .ɪᴍᴅʙ
- .ɢᴏᴏɢʟᴇ
- .ɢɪᴍᴀɢᴇ
- .ɪᴍɢ
- .ᴘɪɴᴛᴇʀᴇꜱᴛ
- .ᴡᴀʟʟᴘᴀᴘᴇʀ
- .ᴡɪᴋɪᴍᴇᴅɪᴀ
- .ʏᴛꜱᴇᴀʀᴄʜ
- .ʀɪɴɢᴛᴏɴᴇ
- .ʟʏʀɪᴄꜱ
-
- *ᴍᴀɪɴ* 
- .ᴘɪɴɢ
- .ᴀʟɪᴠᴇ>
- .ᴏᴡɴᴇʀ
- .ᴍᴇɴᴜ
- .ʜᴇʟᴘ
- .ɪɴꜰᴏʙᴏᴛ
-
- *ᴏᴡɴᴇʀ* 
- .ᴊᴏɪɴ
- .ʟᴇᴀᴠᴇ
- .ʙʟᴏᴄᴋ
- .ᴜɴʙʟᴏᴄᴋ
- .ꜱᴇᴛᴘᴘʙᴏᴛ
- .ᴀɴᴛɪᴄᴀʟʟ
- .ꜱᴇᴛꜱᴛᴀᴛᴜꜱ
- .ꜱᴇᴛɴᴀᴍᴇʙᴏᴛ
- .ᴀᴜᴛᴏᴛʏᴘɪɴɢ
- .ᴀʟᴡᴀʏꜱᴏɴʟɪɴᴇ
- .ᴀᴜᴛᴏʀᴇᴀᴅ
- .ᴀᴜᴛᴏꜱᴠɪᴇᴡ
- .ᴜᴘᴅᴀᴛᴇ
- .ʀᴇꜱᴛᴀʀᴛ
-
- *ꜱᴛᴀʟᴋ* 
-  .ᴛʀᴜᴇᴄᴀʟʟᴇʀ
-  .ɪɴꜱᴛᴀꜱᴛᴀʟᴋ
-  .ɢɪᴛʜᴜʙꜱᴛᴀʟᴋ
-
-   *maker* 
-   .blur
-   .difuminar2
-   .hornycard
-   .hornylicense
-   .gfx1
-   .gfx2
-   .gfx3
-   .gfx4
-   .gfx5
-   .gfx6
-   .gfx7
-   .gfx8
-   .gfx9
-   .gfx10
-   .gfx11
-   .gfx12
-   .simpcard
-   .itssostupid
-   .iss
-   .stupid
-   .tweet <comment>
-   .lolicon
-   .ytcomment <comment>
-
-  *sticker*
-  .emojimix <emoji+emoji>
-  .getsticker
-  .smaker
-  .stickerwithmeme (caption|reply media)
-  .swmeme <url>
-  .swm(caption|reply media)
-  .sfull
-  .toimg <sticker>
-  .tovid
-  .trigger <@user>
-  .ttp
-  .ttp2
-  .ttp3
-  .ttp4
-  .ttp5
-  .attp
-  .attp2
-  .attp3
-  .take <name>|<author>
-
-    *economy*
-   .addgold <@user>
-   .addxp <@user>
-   .bank
-   .buych
-   .cock-fight <amount>
-   .buy
-   .buyall
-   .daily
-   .deposit
-   .gamble <amount> <color(red/black)>
-   .give credit [amount] [@tag]
-   .levelup
-   .rank
-   .rob
-   .roulette <amount> <color(red/black)>
-   .wallet
-   .withdraw
-   .work
-
-    *plugin* 
-   .plugins
-   .install <Gist URL>
-   .reg <name.age>
-   .mysn
-   .unreg 
-
-
-
+      if you find error or want to upgrade to premium plan contact to the owner.
+      
 > Denzel is bot made up by Mickey
-`
+
 
     
 
@@ -246,7 +65,7 @@ let str = `
 }
 handler.help = ['main']
 handler.tags = ['group']
-handler.command = ['menu2', 'help2'] 
+handler.command = ['menu2', 'help2']
 
 export default handler
 function clockString(ms) {

@@ -15,15 +15,15 @@ export async function all(m) {
     await this.sendMessage(
       m.chat,
       {
-        text: `*WELCOME ITS ME JUST REPLYING*      
-        morning or evening @${m.sender.split('@')[0]} 
-        i may be offline or i may be slow to respond you but wait i will be back soon 😇`.trim(),
+        text: `*KARIBU NA ASANTE KWA KUWASILIANA NAMI*      
+        HABARI ZA MDA HUU @${m.sender.split('@')[0]} 
+        Napenda kukufahamisha mfumo wetu wa kiautomatic umeboreshwa una weza uka acha ujumbe na si tutajibu haraka iwezekanavyo`.trim(),
       },
       { mentions: [m.sender] }
     );
 
     // React to the message
-    m.react('🤫');
+    m.react('🖐️');
   }
 
   return true; // Return true instead of !0 for clarity

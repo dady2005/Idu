@@ -20,6 +20,6 @@ return conn.relayMessage(m.chat, msg.message, {})
 }
 handler.help = ['script']
 handler.tags = ['info']
-handler.command = ['script', 'script2']
+handler.command = ['Sisi', 'repo']
 
 export default handler

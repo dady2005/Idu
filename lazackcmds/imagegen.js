@@ -48,7 +48,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       await conn.sendMessage(
         m.chat,
         {
-          text: `✨ *Search completed!* to use this feature then, consider supporting us: https://github.com/Lazack28/Lazack-Device`,
+          text: `✨ *Search completed!* to use this feature then, consider supporting us: https://github.com/Mickeymozy/Denzel-V2/`,
           contextInfo: {
             externalAdReply: {
               title: '🔍 Powered by Team Mickey_mozy!',

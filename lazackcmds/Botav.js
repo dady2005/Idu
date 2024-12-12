@@ -8,7 +8,7 @@ let handler = async (m, { conn }) => {
 conn.sendButton(m.chat, `*HELLO IM HERE*      
     FOR YOU @${m.sender.split('@')[0]} 
     TELL ME WHATEVER I LISTEN ? 🙏
-  `.trim(), igfg, null, [['OWNER HELP', '.grp'],['GET SC', '.repo']] , m, { mentions: [m.sender] })
+  `.trim(), igfg, null, , m, { mentions: [m.sender] })
   
 conn.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
 } 

@@ -2,19 +2,24 @@ import fetch from "node-fetch"
 import { generateWAMessageFromContent } from "@whiskeysockets/baileys"
 
 let handler = async (m, { conn }) => {
-  let msg = await generateWAMessageFromContent(m.chat, {
-    imageMessage: {
-      url: "https://i.imgur.com/gcB7GLV.jpeg",
-      caption: "Denzel V2 click here \nhttps://github.com/Mickeymozy/Denzel-V2/",
-      quoted: m
-    }
-  }, { quoted: m })
+let msg = await generateWAMessageFromContent(m.chat, {{,
+let image = 'https://i.imgur.com/gcB7GLV.jpeg                                                      
+    name: "Denzel V2 click here ",
+    address: "Tanzania",
+    url: "https://github.com/Mickeymozy/Denzel-V2/",
+    isLive: true,
+    accuracyInMeters: 0,
+    speedInMps: 0,
+    degreesClockwiseFromMagneticNorth: 2,
+    comment: "Your Welcome",
+    //jpegThumbnail: await conn.resize("https://imgur.com/q7WXO5w.jpeg", 300, 300),
+  },
+}, { quoted: m })
 
-  return conn.relayMessage(m.chat, msg.message, {})
+return conn.relayMessage(m.chat, msg.message, {})
 }
-
 handler.help = ['script']
 handler.tags = ['info']
-handler.command = ['repo', 'repo']
+handler.command = ['script', 'script2']
 
 export default handler
